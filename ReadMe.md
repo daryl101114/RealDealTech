@@ -1,15 +1,26 @@
+**FOR ALL DEVELOPERS**
+- MAKE SURE TO "FETCH" EVERYTIME YOU WORK ON THE PROJECT SO YOU HAVE THE UPDATED CODE
+- WHEN RUNNING A COMMIT DON'T INCLUDE THE FOLDER NODE_MODULES
+
+#Server-sideStart Guide#
+[]Clone the repository from Github
+[]Open your terminal
+    [] Using the terminal go to the project folder
+    [] make sure you have node install
+        [] type node -v to check if node is installed
+        [] if not install node in your computer
+    [] Using the terminal go into server folder
+    [] type "npm install" *this will install all the required dependencies for the application*
+    [] type "npm run dev" to run the server application *This may return error since Database is not yet provided*
+
+
+
 ToDo List
-[] Install dependencies
-[] Create a Server
-[] Create a connection to the database
+[x] Install dependencies
+[x] Create a Server
+[x] Create a connection to the database (LOCAL MySQL DATABASE FOR TEMPORARY USE)
 [] Implement the database design
-    []Create a Model of the Dog table
-    []Create a Model of the Customer table
-    []Create a Model of the Vaccine_Records table
-    []Create a Model of the Dog_Appointment table
-    []Create a Model of the Ban_List table
-    []Create a Model of the Service table
-[] Create a login API for the user
+[x] Create a Register API for the user
 [] Create a API with "CRUD" functionalities that is within the scope of the projec
 
 Scope of the Web Application: 
