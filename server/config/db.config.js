@@ -1,9 +1,12 @@
 module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "1234567*",
-  DB: "testdb",
+  DB: "main",
+  HOST: "realdealtech.cvackxmaul8t.us-east-1.rds.amazonaws.com",
+  USER: "admin",
+  PASSWORD: "Realdealtech1",
   dialect: "mysql",
+  dialectOptions:{
+    ssl:'Amazon RDS'
+  },
   pool: {
     max: 5,
     min: 0,

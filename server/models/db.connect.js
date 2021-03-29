@@ -2,9 +2,15 @@ const dbConfig = require("../config/db.config")
 const Sequelize = require('sequelize');
 const mysql = require('mysql');
 const { Model } = require("sequelize");
+const { dialectOptions } = require("../config/db.config");
+
 const sequelize = new Sequelize(dbConfig.DB,dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
+    port: 3306,
     dialect: dbConfig.dialect,
+    dialectOptions: {
+      ssl:'Amazon RDS'
+  },
     pool: dbConfig.pool
   });
   sequelize
