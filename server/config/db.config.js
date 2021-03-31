@@ -1,6 +1,6 @@
 module.exports = {
   DB: "main",
-  HOST: "realdealtech.cvackxmaul8t.us-east-1.rds.amazonaws.com",
+  HOST: "database-1.cbeoe3w0dmyz.us-east-1.rds.amazonaws.com",
   USER: "admin",
   PASSWORD: "Realdealtech1",
   dialect: "mysql",
