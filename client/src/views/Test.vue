@@ -5,7 +5,7 @@
     <TestComp msg="This is the Test Page"/>
     <!-- "v-if" will allow the TestCompClicked component to be 
     loaded when button is true, and unloaded when button is false -->
-    <button @click="toggleComponent">Button to View!</button>
+    <button class="button" style="vertical-align:middle" @click="toggleComponent"><span>View! </span></button>
     <TestCompClicked
       v-if="showComponent"
     />
@@ -43,10 +43,41 @@ methods: {
   max-width: 125px;
   max-height: 125px;
 }
-button {
-  font-size: 25px;
+.button {
+  background-color: chocolate;
   font-weight: bold;
   width: 200px;
-  height: 40px;
+  height: auto;
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  color: aliceblue;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 </style>
