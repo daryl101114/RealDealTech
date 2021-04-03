@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
+      <!-- Router View Pushed -->
       <router-link to="https://www.google.com">Google</router-link>
     </div>
     <router-view/>
