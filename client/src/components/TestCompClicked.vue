@@ -1,6 +1,7 @@
+<!-- This page is for rendering on top on the Test.vue page -->
 <template>
   <div class="testCompClicked">
-    <h1>{{ msg }}</h1>
+    <!-- <h1>{{ msg }}</h1> -->
     <h2>This Page has been CLICKED</h2>
     <p>Also you get to see a picture now since you clicked the button.</p>
     <img id="thumbs" alt="Thumbs Up" src="../assets/thumbsUp.jpeg">
@@ -8,12 +9,12 @@
 </template>
 
 <script>
-export default {
-  name: 'TestCompClicked',
-  props: {
-    msg: String
-  }
-}
+// export default {
+//   name: 'TestCompClicked',
+//   props: {
+//     msg: String
+//   }
+// }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

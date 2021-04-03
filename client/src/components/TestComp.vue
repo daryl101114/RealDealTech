@@ -1,7 +1,7 @@
 <template>
   <div class="testComp">
     <h1>{{ msg }}</h1>
-    <h2>This is a page</h2>
+    <h5>Click button to view more more.</h5>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-h2 {
+h1 {
   color: #b94279;
 }
 </style>
