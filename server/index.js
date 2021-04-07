@@ -36,7 +36,7 @@ app.use(flash());
 
 //DB CONNECT/SYNC
 const db = require("./models/db.connect");
-db.sequelize.sync();
+db.sequelize.sync({alter: true});
 
 
 

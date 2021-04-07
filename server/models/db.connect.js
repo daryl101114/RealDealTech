@@ -1,5 +1,5 @@
 const dbConfig = require("../config/db.config")
-const Sequelize = require('sequelize');
+const {Sequelize,DataTypes} = require('sequelize');
 const mysql = require('mysql');
 const { Model } = require("sequelize");
 const { dialectOptions } = require("../config/db.config");
@@ -29,6 +29,8 @@ const sequelize = new Sequelize(dbConfig.DB,dbConfig.USER, dbConfig.PASSWORD, {
   
   //MODELS
   db.users = require("./user.model")(sequelize, Sequelize);
+
+  
 
   //--------------------------------------------------------------------------------
 
