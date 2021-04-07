@@ -29,7 +29,9 @@ const sequelize = new Sequelize(dbConfig.DB,dbConfig.USER, dbConfig.PASSWORD, {
   
   //MODELS
   db.users = require("./user.model")(sequelize, Sequelize);
-
+  db.stays = require("./stay.model")(sequelize, Sequelize);
+  db.report_cards = require("./report_card")(sequelize, Sequelize);
+  db.blacklists = require("./blacklist")(sequelize, Sequelize);
   
 
   //--------------------------------------------------------------------------------
