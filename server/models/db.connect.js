@@ -32,8 +32,9 @@ const sequelize = new Sequelize(dbConfig.DB,dbConfig.USER, dbConfig.PASSWORD, {
   db.stays = require("./stay.model")(sequelize, Sequelize);
   db.report_cards = require("./report_card")(sequelize, Sequelize);
   db.blacklists = require("./blacklist")(sequelize, Sequelize);
-  
-
+  db.dogInfo = require("./dogInofrmation.model")(sequelize, Sequelize);
+  db.clientInfo = require("./client_Information.model")(sequelize,Sequelize);
+  db.vaccRec = require("./vaccineRecord.model")(sequelize,Sequelize);
   //--------------------------------------------------------------------------------
 
 
