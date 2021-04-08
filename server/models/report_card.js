@@ -7,9 +7,6 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true,
           }, 
-          dogID: {
-              type: DataTypes.INTEGER
-          },
           comment: {
               type: DataTypes.TEXT
           },

@@ -38,12 +38,64 @@ const sequelize = new Sequelize(dbConfig.DB,dbConfig.USER, dbConfig.PASSWORD, {
   db.vaccRec = require("./vaccineRecord.model")(sequelize,Sequelize);
   //--------------------------------------------------------------------------------
 
-  //ASSOCIATION
+//DOG INFORMATION ASSOCIATION --------------------------------------------------------------------
+  //BlackListID (FK)
 db.blacklists.hasMany(db.dogInfo,{
   foreignKey:{allowNull:false},
   onDelete: 'CASCADE',
   onUpdate:'CASCADE'
 });
 db.dogInfo.belongsTo(db.blacklists);
+
+//CLIENT INFORMATION ASSOCIATION
+  //BlackListID (FK)
+db.blacklists.hasMany(db.clientInfo,{
+  foreignKey:{allowNull:false},
+  onDelete: 'CASCADE',
+  onUpdate:'CASCADE'
+});
+db.clientInfo.belongsTo(db.blacklists);
+
+  //DogID (FK)
+db.dogInfo.hasMany(db.clientInfo,{
+  foreignKey:{allowNull:false},
+  onDelete: 'CASCADE',
+  onUpdate:'CASCADE'
+});
+db.clientInfo.belongsTo(db.dogInfo);
+
+//VACCINE RECORD ASOCIATION
+  //DogID (FK)
+db.dogInfo.hasMany(db.vaccRec,{ 
+  foreignKey:{allowNull:false},
+  onDelete: 'CASCADE',
+  onUpdate:'CASCADE'
+});
+db.vaccRec.belongsTo(db.dogInfo);
+
+//STAY ASSOCIATION
+  //ClientID(FK)
+db.clientInfo.hasMany(db.stays,{
+  foreignKey:{allowNull:false},
+  onDelete: 'CASCADE',
+  onUpdate:'CASCADE'
+});
+db.stays.belongsTo(db.clientInfo);
+  //DogID(FK)
+db.dogInfo.hasMany(db.stays,{
+  foreignKey:{allowNull:false},
+  onDelete: 'CASCADE',
+  onUpdate:'CASCADE'
+});
+db.stays.belongsTo(db.dogInfo);
+
+//REPORT CARD ASSOCIATION
+  //DogID(FK)
+db.dogInfo.hasMany(db.report_cards,{
+  foreignKey:{allowNull:false},
+  onDelete: 'CASCADE',
+  onUpdate:'CASCADE'
+});
+db.report_cards.belongsTo(db.dogInfo);
 
   module.exports = db;

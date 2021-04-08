@@ -7,12 +7,6 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         }, 
-        clientID: {
-            type: DataTypes.INTEGER
-        },
-        dogID: {
-            type: DataTypes.INTEGER
-        },
         start_date: {
             type: DataTypes.DATE
         },
