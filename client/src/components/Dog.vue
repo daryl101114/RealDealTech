@@ -6,6 +6,8 @@
             <p class="card-text">Breed: Bulldog</p>
             <p class="card-text">Age: 20</p>
         </div>
+        <!-- Makes card clickable  -->
+        <router-link to="/dogdetails" class="card-link stretched-link"/>
     </div>
 </template>
 

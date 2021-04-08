@@ -1,11 +1,16 @@
 <template>
     <div class="d-flex flex-column justify-content-center">
+        <!-- Page heading -->
         <div class="d-flex justify-content-center">
             <h6 class="page-heading">My Clients</h6>
         </div>
+
+        <!-- Search bar -->
         <div class="d-flex justify-content-center">
             <input type="text" class="form-control input-field" id="search-bar" placeholder="Search clients..." v-model="search"/>
         </div>
+
+        <!-- Client component -->
         <div class="d-flex justify-content-center" id="clientCard">
             <Client/>
         </div>

@@ -6,6 +6,8 @@
             <p class="card-text">Phone: 281-330-8004</p>
             <p class="card-text">Email: client@gmail.com</p>
         </div>
+        <!-- Makes card clickable  -->
+        <router-link to="/clientdetails" class="card-link stretched-link"/>
     </div>
 </template>
 
@@ -16,6 +18,9 @@ export default{
 </script>
 
 <style>
+.card{
+    box-shadow: -4px 4px 10px 0px rgb(0 0 0 / 20%), 0 0 2px 0 rgb(0 0 0 / 19%);
+}
 #card-size{
     width: 18rem;
 }
