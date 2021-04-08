@@ -2,21 +2,17 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
     const clientInfo = sequelize.define("Client_Information", {
-        ClientID:{
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        Name:{
+      
+        name:{
             type: DataTypes.STRING
         },
-        Phone:{
+        phone:{
             type: DataTypes.STRING
         },
-        Email:{
+        email:{
             type: DataTypes.STRING
         },
-        Notes:{
+        notes:{
             type: DataTypes.TEXT
         }
     });

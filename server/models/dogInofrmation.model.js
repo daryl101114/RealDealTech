@@ -2,32 +2,31 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
     const DogInfo = sequelize.define("Dog_Information", {
-        DogID:{
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        DogName:{
+        dog_name:{
             type: DataTypes.STRING
         },
-        Gender:{
+        gender:{
             type: DataTypes.STRING
         },
-        Breed:{
+        breed:{
             type: DataTypes.STRING
         },
-        Notes:{
+        notes:{
             type: DataTypes.TEXT
         },
-        Instructions:{
+        instructions:{
             type: DataTypes.TEXT
         },
-        Rating:{
+        rating:{
             type: DataTypes.STRING(1)
         },
     });
+
+
   
     return DogInfo;
   };
 
-  // TODO: Create an association with blacklistID as a foreign key **REFER TO DOCUMENT DESIGN**
+  
+
+  

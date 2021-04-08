@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const { Model } = require("sequelize");
 const { dialectOptions } = require("../config/db.config");
 
+
 const sequelize = new Sequelize(dbConfig.DB,dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     port: 3306,
@@ -31,11 +32,18 @@ const sequelize = new Sequelize(dbConfig.DB,dbConfig.USER, dbConfig.PASSWORD, {
   db.users = require("./user.model")(sequelize, Sequelize);
   db.stays = require("./stay.model")(sequelize, Sequelize);
   db.report_cards = require("./report_card")(sequelize, Sequelize);
-  db.blacklists = require("./blacklist")(sequelize, Sequelize);
   db.dogInfo = require("./dogInofrmation.model")(sequelize, Sequelize);
+  db.blacklists = require("./blacklist")(sequelize, Sequelize);
   db.clientInfo = require("./client_Information.model")(sequelize,Sequelize);
   db.vaccRec = require("./vaccineRecord.model")(sequelize,Sequelize);
   //--------------------------------------------------------------------------------
 
+  //ASSOCIATION
+db.blacklists.hasMany(db.dogInfo,{
+  foreignKey:{allowNull:false},
+  onDelete: 'CASCADE',
+  onUpdate:'CASCADE'
+});
+db.dogInfo.belongsTo(db.blacklists);
 
   module.exports = db;
