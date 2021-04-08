@@ -1,18 +1,47 @@
 <template>
-    <div class="d-flex flex-column text-justify-left">
-        <div class= "d-flex flex-column justify-content-center">
-            <h2 class="card-title">Dog Details</h2>
+    <div>
+        <div class="border">
+        <div class="d-inline-flex p-2 bd-highlight"><h1>Dog's Details</h1></div>
+        
+        
+        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight" id="field">Client Name:</div>
+        <div class="p-2 bd-highlight">Susan</div>
         </div>
 
-        <div class= "d-flex flex-column justify-content-center text-justify-left">
-            <p id="info">Client Name: fawefwaefawefawefawefwaefawfwhrtdhd rthrdthdrthdrthdrthdrthdrthdrthr </p>
-            <p id="info">Dog Name: </p>
-            <p id="info">Dog Breed: </p>
-            <p id="info">Notes on Dog: </p>
-            <p id="info">Dog Instructions: </p>
-            <p id="info">Previous Stay Info: </p>
-            <p id="info">Average Rating: </p>
-            <p id="info">Report Cards: </p>
+        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight" id="field">Dog Name:</div>
+        <div class="p-2 bd-highlight">Doggy</div>
+        </div>
+
+        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight"id="field">Dog Breed:</div>
+        <div class="p-2 bd-highlight">Ruby</div>
+        </div>
+
+
+        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight"id="field">Notes & Instructions:</div>
+        <div class="p-2 bd-highlight">Rocky</div>
+        </div>
+
+        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight"id="field">Previous Stay Info:</div>
+        <div class="p-2 bd-highlight">Susan is the GOAT</div>
+        </div>
+
+        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="p-2 bd-highlight"id="field">Average Rating:</div>
+        <div class="p-2 bd-highlight">4/5</div>
+        </div>
+
+        <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Report Card</a></div>
+    <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Update</a></div>
+    <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Delete</a></div>
+        </div>
+
+        
         </div>
     </div>
 </template>
@@ -24,13 +53,7 @@ export default{
 </script>
 
 <style>
-.card-title{
+#field{
     font-weight: bold;
 }
-#info{
-font-weight: bold;
-font-size: 18px;
-
-}
-
 </style>

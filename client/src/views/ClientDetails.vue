@@ -38,7 +38,7 @@
         <div class="d-flex flex-row bd-highlight mb-3">
   <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Update</a>
 </div>
-  <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Deleted</a></div>
+  <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Delete</a></div>
 </div>
         
         </div>
