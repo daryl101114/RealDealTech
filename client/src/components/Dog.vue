@@ -2,7 +2,7 @@
     <div class="card" id="card-size">
         <div class="card-body">
             <h6 class="card-title">Dog Name: ROCKY</h6>
-            <p class="card-text">Owner: John Smith</h6>
+            <p class="card-text">Owner: John Smith</p>
             <p class="card-text">Breed: Bulldog</p>
             <p class="card-text">Age: 20</p>
         </div>
