@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <h1> These are you're dogs</h1>
-    <ul>
-        <li>dog</li>
-        <li>dog</li>
-        <li>dog</li>
-        <li>dog</li>
-    </ul>
-  </div>
+  <div class="d-flex flex-column justify-content-center">
+        <div class="d-flex justify-content-center">
+            <h6 class="page-heading">Dogs</h6>
+        </div>
+        <div class="d-flex justify-content-center">
+            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search dogs..." v-model="search"/>
+        </div>
+        <div class="d-flex justify-content-center" id="dogCard">
+            <Dog/>
+        </div>
+    </div>
 </template>
 
 <script>
+import Dog from '@/components/Dog.vue'
 
 export default {
-  name: 'Dogs'
+  name: 'Dogs',
+  components: {
+      Dog
+  }
 }
 </script>
+
+<style>
+#search-bar{
+    width: 18rem;
+    height: 2rem;
+}
+
+#dogCard{
+    margin: 1rem; 
+}
+</style>

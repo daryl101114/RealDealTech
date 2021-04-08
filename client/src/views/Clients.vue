@@ -4,7 +4,7 @@
             <h6 class="page-heading">My Clients</h6>
         </div>
         <div class="d-flex justify-content-center">
-            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search client..." v-model="search"/>
+            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search clients..." v-model="search"/>
         </div>
         <div class="d-flex justify-content-center" id="clientCard">
             <Client/>
