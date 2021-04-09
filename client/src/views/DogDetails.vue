@@ -15,23 +15,23 @@
         </div>
 
         <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight"id="field">Dog Breed:</div>
+        <div class="p-2 bd-highlight" id="field">Dog Breed:</div>
         <div class="p-2 bd-highlight">Ruby</div>
         </div>
 
 
         <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight"id="field">Notes & Instructions:</div>
+        <div class="p-2 bd-highlight" id="field">Notes & Instructions:</div>
         <div class="p-2 bd-highlight">Rocky</div>
         </div>
 
         <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight"id="field">Previous Stay Info:</div>
+        <div class="p-2 bd-highlight" id="field">Previous Stay Info:</div>
         <div class="p-2 bd-highlight">Susan is the GOAT</div>
         </div>
 
         <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight"id="field">Average Rating:</div>
+        <div class="p-2 bd-highlight" id="field">Average Rating:</div>
         <div class="p-2 bd-highlight">4/5</div>
         </div>
 
