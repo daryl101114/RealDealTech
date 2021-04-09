@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Test from '../views/Test.vue'
 import Clients from '../views/Clients.vue'
+import Stays from '../views/Stays.vue'
 import Dogs from '../views/Dogs.vue'
 import ClientDetails from '../views/ClientDetails.vue'
 import DogDetails from '../views/DogDetails.vue'
@@ -29,7 +30,8 @@ const routes = [
     //component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue')
     component: Test
   },
-  {    path: '/clients',
+  {    
+    path: '/clients',
     name: 'Clients',
     component: Clients
   },
@@ -47,6 +49,11 @@ const routes = [
     path: '/dogdetails',
     name: 'DogDetails',
     component: DogDetails
+  },
+  {
+    path: '/stays',
+    name: 'Stays',
+    component: Stays
   }
 ]
 

@@ -1,0 +1,40 @@
+<template>
+    <div class="d-flex flex-column justify-content-center">
+        <!-- Page heading -->
+        <div class="d-flex justify-content-center">
+            <h6 class="page-heading">Customer Stays</h6>
+        </div>
+
+        <!-- Search bar -->
+        <div class="d-flex justify-content-center">
+            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search stays..." v-model="search"/>
+        </div>
+
+        <!-- Stays component -->
+        <div class="d-flex justify-content-center" id="staysCard">
+            <Stay/>
+        </div>
+    </div>
+</template>
+
+<script>
+import Stay from '@/components/Stay.vue'
+
+export default {
+  name: 'Stays',
+  components: {
+      Stay
+  }
+}
+</script>
+
+<style>
+#search-bar{
+    width: 18rem;
+    height: 2rem;
+}
+
+#staysCard{
+    margin: 1rem; 
+}
+</style>
