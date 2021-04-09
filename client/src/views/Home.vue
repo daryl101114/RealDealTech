@@ -3,18 +3,26 @@
     <img id="logo" alt="Vue logo" src="../assets/ourLogo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button class="button" style="vertical-align:middle" onclick=" window.open('https://jpsulak.wixsite.com/home','_blank')"><span>Click Me! </span></button>
-    <HelloStart msg="Welcome to Your Vue.js App"/>
+    <!-- <HelloStart msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloStart from '@/components/HelloStart.vue'
+// import HelloStart from '@/components/HelloStart.vue'
+
+// export default {
+//   name: 'Home',
+//   components: {
+//     HelloStart
+//   }
+// }
+import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloStart
+    HelloWorld
   }
 }
 
