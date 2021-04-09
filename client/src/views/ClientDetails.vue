@@ -52,4 +52,6 @@ export default{
 </script>
 
 <style>
+background: rgb(115,106,110);
+background: radial-gradient(circle, rgba(115,106,110,1) 0%, rgba(84,110,122,1) 98%);
 </style>
