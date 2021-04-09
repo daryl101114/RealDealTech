@@ -35,7 +35,7 @@
         <div class="p-2 bd-highlight">4/5</div>
         </div>
 
-        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
     <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Report Card</a></div>
     <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Update</a></div>
     <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Delete</a></div>
