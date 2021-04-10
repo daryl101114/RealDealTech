@@ -19,7 +19,7 @@ export default{
 
 <style>
 #card-size{
-    width: 18rem;
+    width: 95%;
 }
 .card-body{
     padding: 1rem;

@@ -30,8 +30,9 @@ export default {
 
 <style>
 #search-bar{
-    width: 18rem;
+    width: 90%;
     height: 2rem;
+    margin: 0 1rem;
 }
 
 #staysCard{

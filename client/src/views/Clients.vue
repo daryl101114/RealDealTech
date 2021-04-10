@@ -43,12 +43,13 @@ export default {
 
 <style>
 .foot{
-    padding-bottom: 4vh;
-    padding-right: 4vw;
+    padding-bottom: 3rem;
+    padding-right: 2rem;
 }
 #search-bar{
-    width: 18rem;
+    width: 90%;
     height: 2rem;
+    margin: 0 1rem;
 }
 
 #clientCard{
