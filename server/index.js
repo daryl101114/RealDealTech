@@ -36,17 +36,22 @@ app.use(flash());
 
 //DB CONNECT/SYNC
 const db = require("./models/db.connect");
-db.sequelize.sync({alter: true});
+// db.sequelize.sync
+// (
+//   // {alter: true}
+//   );
 
 
 
 app.get('/', (req, res) =>{
-  res.send("SEPTONE IS THE REAL MVP")
+  res.send("MAIN WEB SITE")
 })
 //-------------------------------------------------------------------------------
 
 //ROUTERS
-require("./api/routes/user.routes")(app)
+require("./api/routes/user.routes")(app);
+require("./api/routes/blacklist.routes")(app);
+require("./api/routes/dogInfo.routes")(app);//DogInfo API//
 
 app.listen(port, ()=>{
     console.log(`This app is listening on port ${port}`)
