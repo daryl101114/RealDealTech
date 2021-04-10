@@ -37,7 +37,9 @@
 
             <!-- submit and cancel buttons -->
             <div class="d-flex flex-row">
+                <!-- May need input type="submit" instead? -->
                 <button type="submit" class="btn btn-success form-button p-2">Submit</button>
+                <input type="reset" value="Clear" class="btn btn-success form-button p-2">                
                 <router-link to="/clients" class="btn btn-success form-button p-2">Cancel</router-link>
             </div>
         </form>
@@ -63,5 +65,9 @@ export default {
 }
 .p-2{
     margin: .5rem 1rem 0 0;
+}
+/* To right-justify button content on the page */
+.flex-row{
+    margin-left: auto;
 }
 </style>
