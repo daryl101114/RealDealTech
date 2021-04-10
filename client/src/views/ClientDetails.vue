@@ -32,7 +32,7 @@
 
          <div class="d-flex flex-row bd-highlight mb-3">
         <div class="p-2 bd-highlight">Black Listed:</div>
-        <div class="p-2 bd-highlight">Yes</div>
+        <div class="p-2 bd-highlight">No</div>
         </div>
 
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">

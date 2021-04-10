@@ -33,10 +33,27 @@
                 </select>
             </div>
 
-            <!-- dogs' owner -->
+            <!-- dogs' owner first name -->
+            <!-- separating first and last name fields in case of multi-part names
+                i.e. Ana Maria (fName) De La Paz (lName)... 
+                this is commonplace in many cultures -->
             <div class="form-row">
-                <label for="dogsOwned" class="text-light">Owner</label>
-                <input type="text" class="form-control" id="dowsOwned" placeholder="Owner name">
+                <label for="ownerFirstName" class="text-light">Owner First Name</label>
+                <input type="text" class="form-control" id="ownerFirstName" placeholder="Owner first name">
+            </div>
+
+            <!-- dogs' owner's last name -->
+            <div class="form-row">
+                <label for="ownerLastName" class="text-light">Owner Last Name</label>
+                <input type="text" class="form-control" id="ownerLastName" placeholder="Owner last name">
+            </div>
+
+             <!-- dogs' owner's phone number-->
+             <!-- more than one owner may have the same name (i.e. John Smith), 
+                so another form of ID is necessary to tie to the correct owner -->
+            <div class="form-row">
+                <label for="ownerNumber" class="text-light">Owner Last Name</label>
+                <input type="text" class="form-control" id="ownerNumber" placeholder="Owner phone number">
             </div>
 
             <!-- notes about the dog -->
@@ -47,13 +64,14 @@
 
             <!-- instructions for stays-->
             <div class="form-row">
-                <label for="dogInstructions" class="text-light">Dog notes</label>
+                <label for="dogInstructions" class="text-light">Instructions For Dog</label>
                 <textarea class="form-control" id="dogInstructions" rows="3" placeholder="Instructions for dog..."></textarea>
             </div>
 
             <!-- submit and cancel buttons -->
             <div class="d-flex flex-row">
                 <button type="submit" class="btn btn-success form-button p-2">Submit</button>
+                <input type="reset" value="Clear" class="btn btn-success form-button p-2">
                 <router-link to="/dogs" class="btn btn-success form-button p-2">Cancel</router-link>
             </div>
         </form>
@@ -79,5 +97,9 @@ export default {
 }
 .p-2{
     margin: .5rem 1rem 0 0;
+}
+/* To right-justify button content on the page */
+.flex-row{
+    margin-left: auto;
 }
 </style>
