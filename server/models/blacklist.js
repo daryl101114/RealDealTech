@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
         notes:{
             type: DataTypes.TEXT
         },
-        blacklisted: {
+        blacklist_desc: {
             type: DataTypes.BOOLEAN
         }
     });
