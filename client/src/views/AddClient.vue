@@ -52,13 +52,13 @@ export default {
 
 <style>
 .form{
-    margin: 0 1.5rem;
+    margin: 0 1.5rem 2rem;
 }
 .form-row{
     padding-top: .5rem;
     padding-bottom: .5rem;
 }
-.form-botton{
+.form-button{
     padding-top: .5rem;
 }
 .p-2{

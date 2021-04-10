@@ -8,6 +8,7 @@ import Dogs from '../views/Dogs.vue'
 import ClientDetails from '../views/ClientDetails.vue'
 import DogDetails from '../views/DogDetails.vue'
 import AddClient from '../views/AddClient.vue'
+import AddDog from '../views/AddDog.vue'
 
 Vue.use(VueRouter)
 
@@ -60,6 +61,11 @@ const routes = [
     path: '/addclient',
     name: 'AddClient',
     component: AddClient
+  },
+  {
+    path: '/addDog',
+    name: 'AddDog',
+    component: AddDog
   }
 ]
 
