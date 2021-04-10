@@ -7,6 +7,7 @@ import Stays from '../views/Stays.vue'
 import Dogs from '../views/Dogs.vue'
 import ClientDetails from '../views/ClientDetails.vue'
 import DogDetails from '../views/DogDetails.vue'
+import AddClient from '../views/AddClient.vue'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,11 @@ const routes = [
     path: '/stays',
     name: 'Stays',
     component: Stays
+  },
+  {
+    path: '/addclient',
+    name: 'AddClient',
+    component: AddClient
   }
 ]
 
