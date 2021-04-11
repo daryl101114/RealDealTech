@@ -7,7 +7,7 @@
 
         <!-- Search bar -->
         <div class="d-flex justify-content-center">
-            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search stays..." v-model="search"/>
+            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search stays..."/>
         </div>
 
         <!-- Stays component -->
