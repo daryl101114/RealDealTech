@@ -46,7 +46,9 @@
             <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Report Card</a></div>
             <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Update</a></div>
             <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Delete</a></div>
+            <div class="p-2 bd-highlight"><router-link to="/clients" class="btn btn-primary">Cancel</router-link></div>
         </div>
+        
 
     </div>
 </template>
