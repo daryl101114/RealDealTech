@@ -16,6 +16,7 @@
             <!-- Uses component and binds props to send to dog component -->
             <Dog 
             v-bind:key="dog.id"
+            v-bind:id="dog.id"
             v-bind:dog_name="dog.dog_name"
             v-bind:age="dog.age"
             v-bind:gender="dog.gender"

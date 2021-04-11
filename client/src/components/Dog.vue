@@ -10,15 +10,16 @@
 
             <p class="card-text">{{gender}}</p>
         </div>
-        <!-- Makes card clickable  -->
-        <router-link to="/dogdetails" class="card-link stretched-link"/>
+        <!-- Makes card clickable and makes dog :id accessible -->
+        <router-link v-bind:to="'/dogdetails/' + id" class="card-link stretched-link"/>
     </div>
 </template>
 
 <script>
 export default{
+    name: 'Dog',
     props: [
-        'key',
+        'id',
         'dog_name',
         'age',
         'gender',
