@@ -32,11 +32,18 @@
 
 <script>
 import Client from '@/components/Client.vue'
+import axios from 'axios'
 
 export default {
   name: 'Clients',
   components: {
       Client
+  },
+  data() {
+      return {
+          id: this.$route.params.id,
+          client: []
+      }
   }
 }
 </script>

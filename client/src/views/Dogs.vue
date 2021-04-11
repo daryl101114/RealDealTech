@@ -3,6 +3,7 @@
         <!-- Page heading -->
         <div class="d-flex justify-content-center">
             <h5 class="page-heading text-light">Dogs</h5>
+            <h6 class="text-light"></h6>
         </div>
 
         <!-- Search bar -->
@@ -10,9 +11,16 @@
             <input type="text" class="form-control input-field" id="search-bar" placeholder="Search dogs..."/>
         </div>
 
-        <!-- Dog component -->
-        <div class="d-flex justify-content-center" id="dogCard">
-            <Dog/>
+        <!-- Dog component / loop to create list of all dogs in DB -->
+        <div class="d-flex justify-content-center" id="dogCard" v-for="dog in dogs" :key="dog.id">
+            <!-- Uses component and binds props to send to dog component -->
+            <Dog 
+            v-bind:key="dog.id"
+            v-bind:dog_name="dog.dog_name"
+            v-bind:age="dog.age"
+            v-bind:gender="dog.gender"
+            v-bind:breed="dog.breed"
+            />
         </div>
 
         <!-- positions button on bottom of page -->
@@ -32,11 +40,24 @@
 
 <script>
 import Dog from '@/components/Dog.vue'
+import axios from 'axios'
 
 export default {
   name: 'Dogs',
   components: {
       Dog
+  },
+  data() {
+      return {
+          dogs: []
+      }
+  },
+  created() {
+      axios.get("http://localhost:3000/api/dogs")
+      .then(res => this.dogs = res.data.data)
+      .catch(err => {
+          console.log(err)
+      })
   }
 }
 </script>

@@ -1,10 +1,14 @@
 <template>
     <div class="card" id="card-size">
         <div class="card-body">
-            <h6 class="card-title">Dog Name: ROCKY</h6>
-            <p class="card-text">Owner: John Smith</p>
-            <p class="card-text">Breed: Bulldog</p>
-            <p class="card-text">Age: 20</p>
+            <h5 class="card-title font-weight-bold">{{dog_name}}</h5>
+            <p class="card-text">{{breed}}</p>
+
+            <!-- conditional rendering depending on dog age -->
+            <p class="card-text" v-if="age <= 1">{{age}} year old</p>
+            <p class="card-text" v-if="age > 1">{{age}} years old</p>
+
+            <p class="card-text">{{gender}}</p>
         </div>
         <!-- Makes card clickable  -->
         <router-link to="/dogdetails" class="card-link stretched-link"/>
@@ -13,7 +17,13 @@
 
 <script>
 export default{
-    
+    props: [
+        'key',
+        'dog_name',
+        'age',
+        'gender',
+        'breed'
+    ]
 }
 </script>
 
