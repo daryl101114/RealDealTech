@@ -2,7 +2,7 @@
   <div class="d-flex flex-column justify-content-center">
         <!-- Page heading -->
         <div class="d-flex justify-content-center">
-            <h6 class="page-heading">Dogs</h6>
+            <h5 class="page-heading text-light">Dogs</h5>
         </div>
 
         <!-- Search bar -->
