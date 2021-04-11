@@ -28,12 +28,12 @@
 
 #nav {
   padding: 30px;
-  color: white;
+  color: aliceblue;
 }
 
 #nav a {
   font-weight: bold;
-  color: white;
+  color: aliceblue;
 }
 
 #nav a.router-link-exact-active {
