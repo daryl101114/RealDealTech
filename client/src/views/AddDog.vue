@@ -72,7 +72,7 @@
             <div class="d-flex flex-row">
                 <button type="submit" class="btn btn-success form-button p-2">Submit</button>
                 <input type="reset" value="Clear" class="btn btn-success form-button p-2">
-                <router-link to="/dogs" class="btn btn-success form-button p-2">Cancel</router-link>
+                <!-- <router-link to="/dogs" class="btn btn-success form-button p-2">Cancel</router-link> -->
             </div>
         </form>
 
@@ -115,5 +115,13 @@ export default {
 /* To right-justify button content on the page */
 .flex-row{
     margin-left: auto;
+    margin-right: 3.5rem;
+    margin-bottom: 1rem;
+}
+.foot{
+    position: fixed; 
+    bottom: 0; 
+    right: 0;
+
 }
 </style>

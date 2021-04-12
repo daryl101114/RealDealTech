@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- heading label -->
-        <h5 class="text-light">New Client</h5>
+        <h5 class="text-light">New Stay</h5>
         <!-- create client form -->
         <form class="form d-flex flex-column">
 
@@ -11,28 +11,28 @@
                 <input type="text" class="form-control" id="clientName" placeholder="Client name">
             </div>
 
-            <!-- client phone -->
-            <div class="form-row">
-                <label for="phone" class="text-light">Phone</label>
-                <input type="phone" class="form-control" id="phone" placeholder="Phone">
-            </div>
-
             <!-- client email -->
             <div class="form-row">
                 <label for="email" class="text-light">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Email">
             </div>
 
-            <!-- clients' dogs -->
+            <!-- dogs -->
             <div class="form-row">
-                <label for="dogsOwned" class="text-light">Dogs owned</label>
-                <input type="text" class="form-control" id="dowsOwned" placeholder="Dogs names">
+                <label for="dogName" class="text-light">Dogs owned</label>
+                <input type="text" class="form-control" id="dogName" placeholder="Dogs names">
+            </div>
+
+            <!-- date -->
+            <div class="form-row">
+                <label for="datePick" class="text-light">Date of Stay</label>
+                <input type="date" class="form-control" id="datePick">
             </div>
 
             <!-- notes about the client -->
             <div class="form-row">
-                <label for="clientNotes" class="text-light">Client notes</label>
-                <textarea class="form-control" id="clientNotes" rows="3" placeholder="Client notes..."></textarea>
+                <label for="stayNotes" class="text-light">Stay notes</label>
+                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..."></textarea>
             </div>
 
             <!-- submit and cancel buttons -->
@@ -47,7 +47,7 @@
         <footer class="page-footer font-small blue fixed-bottom">
             <div class="d-flex flex-row-reverse bd-highlight foot">
                 <!-- button to cancel -->
-                <router-link to="/clients">
+                <router-link to="/stays">
                     <svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" fill="#5cb85c" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                     </svg>
