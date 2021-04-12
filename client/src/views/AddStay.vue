@@ -7,19 +7,19 @@
 
             <!-- client name -->
             <div class="form-row">
-                <label for="clientName" class="text-light">Name</label>
+                <label for="clientName" class="text-light">Client Name</label>
                 <input type="text" class="form-control" id="clientName" placeholder="Client name">
             </div>
 
             <!-- client email -->
             <div class="form-row">
-                <label for="email" class="text-light">Email</label>
+                <label for="email" class="text-light">Client Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Email">
             </div>
 
             <!-- dogs -->
             <div class="form-row">
-                <label for="dogName" class="text-light">Dogs owned</label>
+                <label for="dogName" class="text-light">Dog Name</label>
                 <input type="text" class="form-control" id="dogName" placeholder="Dogs names">
             </div>
 
