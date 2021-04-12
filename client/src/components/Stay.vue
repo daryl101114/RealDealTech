@@ -8,7 +8,7 @@
             <p class="card-text">Email: client@gmail.com</p>
         </div>
         <!-- Makes card clickable  -->
-        <router-link to="/clientdetails" class="card-link stretched-link"/>
+        <router-link to="/stayDetails" class="card-link stretched-link"/>
     </div>
 </template>
 
