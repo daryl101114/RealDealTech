@@ -25,7 +25,7 @@
         </div>
 
         <!-- positions button on bottom of page -->
-        <footer class="page-footer font-small blue fixed-bottom">
+        <!-- <footer class="page-footer font-small blue fixed-bottom"> -->
             <div class="d-flex flex-row-reverse bd-highlight foot">
                 <!-- button to create new client -->
                 <router-link to="/addDog">
@@ -37,7 +37,7 @@
                     </svg>
                 </router-link>
             </div>
-        </footer>
+        <!-- </footer> -->
     </div>
 </template>
 
@@ -74,6 +74,11 @@ export default {
 </script>
 
 <style>
+.foot{
+    position: fixed; 
+    bottom: 0; 
+    right: 0;
+}
 #search-bar{
     width: 90%;
     height: 2rem;
