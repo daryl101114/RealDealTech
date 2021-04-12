@@ -78,6 +78,7 @@ export default {
     position: fixed; 
     bottom: 0; 
     right: 0;
+    
 }
 #search-bar{
     width: 90%;
