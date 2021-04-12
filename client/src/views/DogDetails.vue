@@ -14,7 +14,8 @@
         <!-- dog age -->
         <div class="d-flex dog-info">
             <p class="p-2 bd-highlight" id="field">Age:</p>
-            <p class="p-2 bd-highlight">{{dog.age}}</p>
+            <p class="p-2 bd-highlight" v-if="dog.age <= 1">{{dog.age}} year old</p>
+            <p class="p-2 bd-highlight" v-if="dog.age > 1">{{dog.age}} years old</p>
         </div>
 
         <!-- dog gender -->
@@ -24,13 +25,13 @@
         </div>
 
         <!-- notes -->
-        <div class="d-flex dog-info">
+        <div class="d-flex dog-info" v-if="dog.notes && dog.notes.length > 0">
             <p class="p-2 bd-highlight" id="field">Notes:</p>
             <p class="p-2 bd-highlight">{{dog.notes}}</p>
         </div>
 
         <!-- instructions -->
-        <div class="d-flex dog-info">
+        <div class="d-flex dog-info" v-if="dog.instructions && dog.instructions.length > 0">
             <p class="p-2 bd-highlight" id="field">Instructions:</p>
             <p class="p-2 bd-highlight">{{dog.instructions}}</p>
         </div>

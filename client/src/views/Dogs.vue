@@ -8,11 +8,11 @@
 
         <!-- Search bar -->
         <div class="d-flex justify-content-center">
-            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search dogs..."/>
+            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search dogs..." v-model="search"/>
         </div>
 
         <!-- Dog component / loop to create list of all dogs in DB -->
-        <div class="d-flex justify-content-center" id="dogCard" v-for="dog in dogs" :key="dog.id">
+        <div class="d-flex justify-content-center" id="dogCard" v-for="dog in filteredDogs" :key="dog.id">
             <!-- Uses component and binds props to send to dog component -->
             <Dog 
             v-bind:key="dog.id"
@@ -52,7 +52,8 @@ export default {
   },
   data() {
       return {
-          dogs: []
+          dogs: [],
+          search: ''
       }
   },
   created() {
@@ -61,6 +62,13 @@ export default {
       .catch(err => {
           console.log(err)
       })
+  },
+  computed: {
+      filteredDogs(){
+            return this.dogs.filter((dog) => {
+                return dog.dog_name.toLowerCase().match(this.search)
+            })
+        }
   }
 }
 </script>
