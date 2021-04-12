@@ -66,7 +66,7 @@ export default {
   computed: {
       filteredDogs(){
             return this.dogs.filter((dog) => {
-                return dog.dog_name.toLowerCase().match(this.search)
+                return dog.dog_name.toLowerCase().match(this.search) || dog.breed.toLowerCase().match(this.search) || String(dog.age).toLowerCase().match(this.search)
             })
         }
   }
