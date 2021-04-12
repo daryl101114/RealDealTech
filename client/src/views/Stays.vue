@@ -11,8 +11,18 @@
         </div>
 
         <!-- Stays component -->
-        <div class="d-flex justify-content-center" id="staysCard">
-            <Stay/>
+        <div class="d-flex justify-content-center" id="staysCard" v-for="(stay, index) in stays" :key="stay.id" >
+            <Stay
+            v-if="dogs[index]"
+            v-bind:key="stay.stayID"
+            v-bind:id="stay.stayID"
+            v-bind:start_date="stay.start_date"
+            v-bind:end_date="stay.end_date"
+            v-bind:dog_name="dogs[index].dog_name"
+            v-bind:client_name="stay.client_name"
+            v-bind:note="stay.note"
+            v-bind:instruction="stay.instructions"
+            />
         </div>
 
         <!-- positions button on bottom of page -->
@@ -30,12 +40,46 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Stay from '@/components/Stay.vue'
 
 export default {
   name: 'Stays',
   components: {
       Stay
+  },
+  data (){
+      return{
+          stays: [],
+          dogs: [],
+          client: []
+      }
+  },
+  created() {
+    axios.get("http://localhost:3000/api/stay")
+      .then(res => {
+          this.stays = res.data
+
+          for(let i = 0; i < this.stays.length; i++){
+              axios.get("http://localhost:3000/api/dogs/dog/" + this.stays[i].DogInformationId)
+                .then(res => {
+                    this.dogs.push(res.data.data)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            }
+          })
+      .catch(err => {
+          console.log(err)
+      })
+  },
+  computed: {
+      filteredStays(){
+            return this.stays.filter((stay) => {
+                return stays.start_date.toLowerCase().match(this.search) 
+            })
+        }
   }
 }
 </script>

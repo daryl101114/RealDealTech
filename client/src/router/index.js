@@ -77,7 +77,7 @@ const routes = [
     component: AddStay
   },
   {
-    path: '/stayDetails',
+    path: '/stayDetails/:id',
     name: 'StayDetails',
     component: StayDetails
   }

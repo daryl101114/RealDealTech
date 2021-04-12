@@ -1,20 +1,44 @@
 <template>
     <div class="card" id="card-size">
         <div class="card-body">
-            <h6 class="card-title">Stays:</h6>
-            <p class="card-text">Dates: 01/05/20</p>
-            <p class="card-text">Dogs: Ruby</p>
-            <p class="card-text">Client: Susan</p>
-            <p class="card-text">Email: client@gmail.com</p>
+            <h6 class="card-title font-weight-bold">{{dog_name}}'s Stay</h6>
+
+            <!-- conditional rendering for dates -->
+            <p v-if="!start_date && !end_date"></p>
+            <p class="card-text" v-if="start_date">{{start_date | moment}} - {{end_date | moment}}</p>
+            <p class="card-text">Owner: Susan</p>
+
+            <!-- conditional rending to check if there is notes or not -->
+            <p class="card-text" v-if="note.length <= 1"></p>
+            <p class="card-text" v-if="note.length > 1">Notes: {{note}}</p>
+
+            <!-- conditionala rendering to check if there is instructions or not -->
+            <p class="card-text" v-if="instruction.length <= 1"></p>
+            <p class="card-text" v-if="instruction.length > 1">Instructions: {{instruction}}</p>
         </div>
-        <!-- Makes card clickable  -->
-        <router-link to="/stayDetails" class="card-link stretched-link"/>
+        <!-- Routes card to stay details and passes id  -->
+        <router-link v-bind:to="'/stayDetails/' + id" class="card-link stretched-link"/>
     </div>
 </template>
 
 <script>
+import moment from 'moment'
+
 export default{
-    
+    name: 'Stay',
+    props: [
+        'id',
+        'dog_name',
+        'start_date',
+        'end_date',
+        'note',
+        'instruction'
+    ],
+    filters: {
+        moment: function (date) {
+            return moment(date).format("MMM Do, YYYY");
+        }
+    }
 }
 </script>
 
