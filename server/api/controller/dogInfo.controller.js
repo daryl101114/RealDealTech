@@ -98,3 +98,23 @@ exports.delete = (req,res) => {
     const id = req.params.id
     Dog.destroy({where: {id: {[Op.eq]: id }}})
 }
+
+//GET ALL DOG WITHIN A CLIENT
+exports.getDogsPerClient = (req, res) => {
+  const id = req.params.id; 
+  // console.log(id)
+  Dog.findAll(
+      {
+          where:{ClientInformationId: {[Op.eq]: id }},
+          include:[
+            {model: db.blacklists},
+            {model: db.clientInfo}
+          ],
+          
+      }).then(dog =>{
+          console.log(JSON.stringify(dog));
+          res.status(200).send({error: false, message:` Succesfully grab all records`,data: dog});
+      }).catch(err => {
+      res.status(500).send(err);
+  });
+}
