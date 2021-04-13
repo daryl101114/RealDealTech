@@ -12,14 +12,18 @@ exports.getAll = (req, res) => {
     });
 }
 
-//GET ONE DOG USING DOG ID
+//GET ONE DOG USING CLIENT ID
 exports.getOne = (req, res) => {
     const id = req.params.id; 
     // console.log(id)
     Dog.findOne(
         {
             where:{id: {[Op.eq]: id }},
-            include:[{model: db.blacklists}]
+            include:[
+              {model: db.blacklists},
+              {model: db.clientInfo}
+            ],
+            
         }).then(dog =>{
             console.log(JSON.stringify(dog));
             res.status(200).send({error: false, message:` Succesfully grab all records`,data: dog});
@@ -28,11 +32,12 @@ exports.getOne = (req, res) => {
     });
 }
 
-//CREATE A DOG
+//CREATE A RECORD
 exports.create = (req, res) => {
     const dog = {
         dog_name: req.body.name,
         blacklistId: req.body.blacklistID,
+        ClientInformationId: req.body.ClientInformationId,
         age: req.body.age,
         gender: req.body.gender,
         breed: req.body.breed,
@@ -47,7 +52,7 @@ exports.create = (req, res) => {
       })
 }
 
-//UPDATE A DOG
+//UPDATE A RECORD
 
 exports.update = (req,res) => {
     const id = req.params.id;
@@ -55,6 +60,7 @@ exports.update = (req,res) => {
     const updateDog = {
         dog_name: req.body.name,
         blacklistId: req.body.blacklistID,
+        ClientInformationId: req.body.ClientInformationId,
         age: req.body.age,
         gender: req.body.gender,
         breed: req.body.breed,
@@ -67,31 +73,48 @@ exports.update = (req,res) => {
 Dog.findOne({where: {id: {[Op.eq]: id }},})
 .then(record => {
   
+  //CHECKS IF THE RECORD EXISTS
   if (!record) {
     throw new Error('No record found')
   }
 
   console.log(`retrieved record ${JSON.stringify(record,null,2)}`) 
   
+  //update a record
   record.update(updateDog).then( updatedRecord => {
     console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)
     // login into your DB and confirm update
     res.status(200).send(updatedRecord);
   })
-
 })
 .catch((error) => {
   // do seomthing with the error
   throw new Error(error)
 })
-
-    
-//update a record
 }
-//DELETE A DOG
-
+//DELETE A RECORD
 //Works But needs a response from the server "res.send(status)"
 exports.delete = (req,res) => {
     const id = req.params.id
     Dog.destroy({where: {id: {[Op.eq]: id }}})
+}
+
+//GET ALL DOG WITHIN A CLIENT
+exports.getDogsPerClient = (req, res) => {
+  const id = req.params.id; 
+  // console.log(id)
+  Dog.findAll(
+      {
+          where:{ClientInformationId: {[Op.eq]: id }},
+          include:[
+            {model: db.blacklists},
+            {model: db.clientInfo}
+          ],
+          
+      }).then(dog =>{
+          console.log(JSON.stringify(dog));
+          res.status(200).send({error: false, message:` Succesfully grab all records`,data: dog});
+      }).catch(err => {
+      res.status(500).send(err);
+  });
 }

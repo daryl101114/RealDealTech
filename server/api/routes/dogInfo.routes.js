@@ -8,6 +8,7 @@ module.exports = app => {
     router.get("/dog/:id",dogInfo.getOne)
     router.put("/dogUpdate/:id", dogInfo.update)
     router.delete("/dogDelete/:id", dogInfo.delete)
+    router.get("/dogPerClient/:id",dogInfo.getDogsPerClient)
 
 
 

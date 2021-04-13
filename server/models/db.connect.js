@@ -47,6 +47,14 @@ db.blacklists.hasMany(db.dogInfo,{
 });
 db.dogInfo.belongsTo(db.blacklists);
 
+  //Client (FK)
+  db.clientInfo.hasMany(db.dogInfo,{
+    foreignKey:{allowNull:false},
+    onDelete: 'CASCADE',
+    onUpdate:'CASCADE'
+  });
+  db.dogInfo.belongsTo(db.clientInfo);
+
 //CLIENT INFORMATION ASSOCIATION
   //BlackListID (FK)
 db.blacklists.hasMany(db.clientInfo,{
@@ -55,14 +63,6 @@ db.blacklists.hasMany(db.clientInfo,{
   onUpdate:'CASCADE'
 });
 db.clientInfo.belongsTo(db.blacklists);
-
-  //DogID (FK)
-db.dogInfo.hasMany(db.clientInfo,{
-  foreignKey:{allowNull:false},
-  onDelete: 'CASCADE',
-  onUpdate:'CASCADE'
-});
-db.clientInfo.belongsTo(db.dogInfo);
 
 //VACCINE RECORD ASOCIATION
   //DogID (FK)
