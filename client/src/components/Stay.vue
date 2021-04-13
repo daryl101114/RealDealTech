@@ -6,7 +6,8 @@
             <!-- conditional rendering for dates -->
             <p v-if="!start_date && !end_date"></p>
             <p class="card-text" v-if="start_date">{{start_date | moment}} - {{end_date | moment}}</p>
-            <p class="card-text">Owner: Susan</p>
+            <p class="card-text">Client name: {{client_fname}} {{client_lname}}</p>
+            <p class="card-text">Dog name: {{dog_name}}</p>
 
             <!-- conditional rending to check if there is notes or not -->
             <p class="card-text" v-if="note.length <= 1"></p>
@@ -28,9 +29,11 @@ export default{
     name: 'Stay',
     props: [
         'id',
-        'dog_name',
         'start_date',
         'end_date',
+        'dog_name',
+        'client_fname',
+        'client_lname',
         'note',
         'instruction'
     ],

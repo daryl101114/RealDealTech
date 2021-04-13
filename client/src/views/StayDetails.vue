@@ -1,38 +1,46 @@
 <template>
     <div class="border">
-      <div class="d-inline-flex p-2 bd-highlight">
-        <h5>{{stay.Dog_Information.dog_name}}'s Stay Details</h5>
-      </div>
-      
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Client Name:</div>
-        <div class="p-2 bd-highlight">Susan</div>
-      </div>
+      <!-- make page column format -->
+      <div class="d-flex flex-column">
+        <!-- page heading -->
+        <h5 class="font-weight-bold">Stay Details</h5>
 
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Client Informaiton:</div>
-        <div class="p-2 bd-highlight">Susan@blablalba.com</div>
-      </div>
+        <!-- Date information -->
+        <div class="d-flex flex-column align-items-start" id="stay-section">
+          <h6 class="font-weight-bold" id="heading">Stay Date</h6>
+          <p>{{stay.start_date | moment}} - {{stay.end_date | moment}}</p>
+        </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Stay Date</div>
-        <div class="p-2 bd-highlight">{{stay.start_date | moment}} - {{stay.end_date | moment}}</div>
-      </div>
+        <!-- client information -->
+        <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.Client_Information">
+          <h6 class="font-weight-bold" id="heading">Client information</h6>
+          <!-- router link to client deatils page -->
+          <router-link v-bind:to="'/clientDetails/' + stay.ClientInformationId" class="text-light">
+            <p>Name: <u>{{stay.Client_Information.fname}} {{stay.Client_Information.lname}}</u></p>
+          </router-link>
+          <!-- client phone -->
+          <p>Phone: {{stay.Client_Information.phone}}</p>
+          <!-- client email -->
+          <p>Email: {{stay.Client_Information.email}}</p>
+        </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3" v-if="stay.note">
-        <div class="p-2 bd-highlight">Notes:</div>
-        <div class="p-2 bd-highlight">{{stay.note}}</div>
-      </div>
+        <!-- dog information -->
+        <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.Dog_Information">
+          <h6 class="font-weight-bold" id="heading">Dog information</h6>
+          <!-- router link to dog details page -->
+          <router-link v-bind:to="'/dogDetails/' + stay.DogInformationId" class="text-light">
+            <p>Name: <u>{{stay.Dog_Information.dog_name}}</u></p>            
+          </router-link>
+          <!-- dog breed -->
+          <p>Breed: {{stay.Dog_Information.breed}}</p>
+        </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Black Listed:</div>
-        <div class="p-2 bd-highlight">No</div>
-      </div>
+        <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.note || stay.instructions">
+          <h5 class="font-weight-bold" id="heading">Stay information</h5>
+          <p>Notes: {{stay.note}}</p>
+          <p>Instructions: {{stay.instructions}}</p>
+        </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-        <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Update</a></div>
-        <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Delete</a></div>
-        <div class="p-2 bd-highlight"><router-link to="/stays" class="btn btn-primary">Cancel</router-link></div>
       </div>
     </div>
 </template>
@@ -74,5 +82,7 @@ color: aliceblue;
 /* background-color: aliceblue; */
 }
 
-
+#stay-section{
+  margin: .5rem 1rem;
+}
 </style>

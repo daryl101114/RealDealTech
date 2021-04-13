@@ -2,24 +2,24 @@
     <div class="d-flex flex-column justify-content-center">
         <!-- Page heading -->
         <div class="d-flex justify-content-center">
-            <h5 class="page-heading text-light">Customer Stays</h5>
+            <h5 class="page-heading text-light">Stays</h5>
         </div>
 
         <!-- Search bar -->
         <div class="d-flex justify-content-center">
-            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search stays..."/>
+            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search stays..." v-model="search"/>
         </div>
 
         <!-- Stays component -->
-        <div class="d-flex justify-content-center" id="staysCard" v-for="(stay, index) in stays" :key="stay.id" >
+        <div class="d-flex justify-content-center" id="staysCard" v-for="stay in filteredStays" :key="stay.stayID" >
             <Stay
-            v-if="dogs[index]"
             v-bind:key="stay.stayID"
             v-bind:id="stay.stayID"
             v-bind:start_date="stay.start_date"
             v-bind:end_date="stay.end_date"
-            v-bind:dog_name="dogs[index].dog_name"
-            v-bind:client_name="stay.client_name"
+            v-bind:dog_name="stay.Dog_Information.dog_name"
+            v-bind:client_fname="stay.Client_Information.fname"
+            v-bind:client_lname="stay.Client_Information.lname"
             v-bind:note="stay.note"
             v-bind:instruction="stay.instructions"
             />
@@ -51,33 +51,28 @@ export default {
   data (){
       return{
           stays: [],
-          dogs: [],
-          client: []
+          search: ''
       }
   },
   created() {
-    axios.get("http://localhost:3000/api/stay")
-      .then(res => {
-          this.stays = res.data
-
-          for(let i = 0; i < this.stays.length; i++){
-              axios.get("http://localhost:3000/api/dogs/dog/" + this.stays[i].DogInformationId)
-                .then(res => {
-                    this.dogs.push(res.data.data)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            }
-          })
-      .catch(err => {
-          console.log(err)
-      })
+      axios.get("http://localhost:3000/api/stay")
+      .then(res => this.stays = res.data)
+      .catch(err => console.log(err))
   },
   computed: {
+    //   sort stays in order of most recent
+      sortStays: function() {
+          return this.stays.sort((a,b) => {
+              return a.start_date < b.start_date ? 1 : -1
+          })
+      },
+    //   filter stays when typing in the search bar
       filteredStays(){
-            return this.stays.filter((stay) => {
-                return stays.start_date.toLowerCase().match(this.search) 
+            return this.sortStays.filter((stay) => {
+                return stay.Client_Information.fname.toLowerCase().match(this.search) 
+                || stay.Client_Information.lname.toLowerCase().match(this.search)
+                || stay.Dog_Information.dog_name.toLowerCase().match(this.search)
+                || stay.start_date.toLowerCase().match(this.search)
             })
         }
   }
