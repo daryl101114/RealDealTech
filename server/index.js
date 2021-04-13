@@ -38,7 +38,7 @@ app.use(flash());
 const db = require("./models/db.connect");
 // db.sequelize.sync
 // (
-//   // {alter: true}
+//   {alter: true}
 //   );
 
 
@@ -55,6 +55,7 @@ require("./api/routes/dogInfo.routes")(app);//DogInfo API//
 require("./api/routes/stay.routes")(app);//STAY API
 require("./api/routes/reportCard.routes")(app);//REPORT CARD API
 require("./api/routes/vaccineRec.routes")(app);//VACCINE API
+require("./api/routes/clientInformation.routes")(app)//CLIENT API
 
 //START THE SERVER
 app.listen(port, ()=>{

@@ -85,7 +85,14 @@ exports.getOne = (req,res) => {
   const id = req.params.id
   console.log(id)
 
-  Stay.findOne({where: {stayID: {[Op.eq]: id}}}).then(records =>{
+  Stay.findOne(
+    {where: {stayID: {[Op.eq]: id}},
+    include:[
+      {model: db.dogInfo},
+      {model: db.clientInfo}
+    ]
+  }  
+    ).then(records =>{
       console.log(JSON.stringify(records));
       res.status(200).send(records);
   }).catch(err =>{
@@ -104,3 +111,19 @@ exports.delete = (req,res) => {
     res.status(500).send(err)
   })
 }
+
+//OUTPUT
+
+// [
+//     att1:
+//     att2:
+//     att3:
+//     FK:[
+//       Att1:
+//       Att2
+//     ]
+//     FK2[
+//       att1:
+//       att2:
+//     ]
+// ]
