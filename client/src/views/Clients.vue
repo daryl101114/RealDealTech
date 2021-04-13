@@ -53,6 +53,7 @@ export default {
       }
   },
   created() {
+    //   call client list from API
       axios.get("http://localhost:3000/api/clients")
       .then(res => {
             this.clients = res.data.data
@@ -61,7 +62,6 @@ export default {
             axios.get("http://localhost:3000/api/dogs/dogPerClient/" + this.clients)
             .then(res => {
             this.dogs = res.data.data
-            console.log(this.dogs)
             })
             .catch(console.log(err))
         })
@@ -70,8 +70,16 @@ export default {
       })
   },
   computed: {
+    //   sort clients A-Z by first name
+      sortedClients: function() {
+          return this.clients.sort((a,b) => {
+              return a.fname > b.fname ? 1 : -1
+          }
+        )
+      },
+    //   filter clients to match search bar
       filteredClients(){
-            return this.clients.filter((client) => {
+            return this.sortedClients.filter((client) => {
                 return client.fname.toLowerCase().match(this.search) || client.lname.toLowerCase().match(this.search) || client.email.toLowerCase().match(this.search)
             })
         }
