@@ -4,7 +4,12 @@ const Op = db.Sequelize.Op
 
 //GET ALL THE STAY RECORDS
 exports.getAll = (req,res) => {
-     Stay.findAll().then(records =>{
+     Stay.findAll({
+      include:[
+        {model: db.dogInfo},
+        {model: db.clientInfo}
+      ]
+     }).then(records =>{
          console.log(JSON.stringify(records));
          res.status(200).send(records);
      }).catch(err =>{
