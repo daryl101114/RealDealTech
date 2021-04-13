@@ -1,19 +1,24 @@
 <template>
     <div class="card" id="card-size">
         <div class="card-body">
-            <h6 class="card-title">Client Name: SUSAN</h6>
-            <p class="card-text">Dogs: RUBY, ROCKY</p>
-            <p class="card-text">Phone: 281-330-8004</p>
-            <p class="card-text">Email: client@gmail.com</p>
+            <h6 class="card-title font-weight-bold">{{fname}} {{lname}}</h6>
+            <p class="card-text">Phone: {{phone}}</p>
+            <p class="card-text">Email: {{email}}</p>
         </div>
         <!-- Makes card clickable  -->
-        <router-link to="/clientdetails" class="card-link stretched-link"/>
+        <router-link v-bind:to="'/clientdetails/' + id" class="card-link stretched-link"/>
     </div>
 </template>
 
 <script>
 export default{
-    
+    props: [
+        'id',
+        'fname',
+        'lname',
+        'phone',
+        'email'
+    ]
 }
 </script>
 

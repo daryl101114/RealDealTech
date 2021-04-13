@@ -1,7 +1,7 @@
 <template>
     <div class="card" id="card-size">
         <div class="card-body">
-            <h5 class="card-title font-weight-bold">{{dog_name}}</h5>
+            <h6 class="card-title font-weight-bold">{{dog_name}}</h6>
             <p class="card-text">{{breed}}</p>
 
             <!-- conditional rendering depending on dog age -->

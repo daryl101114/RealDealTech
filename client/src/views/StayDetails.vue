@@ -1,7 +1,7 @@
 <template>
     <div class="border">
       <div class="d-inline-flex p-2 bd-highlight">
-        <h5>{{dog.dog_name}}'s Stay Details</h5>
+        <h5>{{stay.Dog_Information.dog_name}}'s Stay Details</h5>
       </div>
       
       <div class="d-flex flex-row bd-highlight mb-3">
@@ -10,7 +10,7 @@
       </div>
 
       <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Client Email:</div>
+        <div class="p-2 bd-highlight">Client Informaiton:</div>
         <div class="p-2 bd-highlight">Susan@blablalba.com</div>
       </div>
 
@@ -19,7 +19,7 @@
         <div class="p-2 bd-highlight">{{stay.start_date | moment}} - {{stay.end_date | moment}}</div>
       </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3">
+      <div class="d-flex flex-row bd-highlight mb-3" v-if="stay.note">
         <div class="p-2 bd-highlight">Notes:</div>
         <div class="p-2 bd-highlight">{{stay.note}}</div>
       </div>
@@ -45,8 +45,7 @@
     data() {
         return {
             id: this.$route.params.id,
-            stay: [],
-            dog: []
+            stay: []
         }
     },
     created() {
@@ -54,18 +53,6 @@
       axios.get("http://localhost:3000/api/stay/" + this.id)
       .then(res => {
         this.stay = res.data
-        // api call to get dog details in this stay
-        axios.get("http://localhost:3000/api/dogs/dog/" + this.stay.DogInformationId)
-        .then(res => this.dog = res.data.data)
-        .catch(err => 
-          console.log(err)
-        )
-        // api call to get client details in this stay
-        // axios.get("http://localhost:3000/api/client" + this.stay.ClientInformationId)
-        // .then(res => this.client = res.data)
-        // .catch(err => 
-        //   console.log(err)
-        // )
       })
       .catch(err => {
           console.log(err)

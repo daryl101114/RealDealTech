@@ -1,36 +1,31 @@
 <template>
     <div class="border">
-      <div class="d-inline-flex p-2 bd-highlight"><h1>Susan's Information</h1></div>
+      <!-- Client name -->
+      <div class="d-inline-flex p-2 bd-highlight"><h5>{{client.fname}} {{client.lname}}</h5></div>
       
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Contact:</div>
-        <div class="p-2 bd-highlight">832-123-4567</div>
+      <div class="d-flex flex-column bd-highlight mb-3">
+        <div class="p-2 bd-highlight">Contact Information</div>
+        <div class="p-2 bd-highlight">Phone: {{client.phone}}</div>
+        <div class="p-2 bd-highlight">Email: {{client.email}}</div>
       </div>
 
       <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">email:</div>
-        <div class="p-2 bd-highlight">Susan@blablalba.com</div>
+          <div class="p-2 bd-highligh">Dogs owned:</div>
+          <div class="p-2 bd-highlight" v-for="dog in dogs" :key="dog.id">
+            <router-link v-bind:to="'/dogdetails/' + dog.id"  id="dog-link">
+              <h6>{{dog.dog_name}}</h6>
+            </router-link>
+          </div>
       </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Dog Name:</div>
-        <div class="p-2 bd-highlight">Ruby</div>
-      </div>
-
-
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Dog Name:</div>
-        <div class="p-2 bd-highlight">Rocky</div>
-      </div>
-
-      <div class="d-flex flex-row bd-highlight mb-3">
+      <div class="d-flex flex-row bd-highlight mb-3" v-if="client.notes">
         <div class="p-2 bd-highlight">Notes:</div>
-        <div class="p-2 bd-highlight">Susan is the GOAT</div>
+        <div class="p-2 bd-highlight">{{client.notes}}</div>
       </div>
 
       <div class="d-flex flex-row bd-highlight mb-3">
         <div class="p-2 bd-highlight">Black Listed:</div>
-        <div class="p-2 bd-highlight">No</div>
+        <div class="p-2 bd-highlight">{{client.blacklist.blacklist_desc}}</div>
       </div>
 
       <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
@@ -42,8 +37,32 @@
 </template>
 
 <script>
-  export default{
+  import axios from 'axios'
 
+  export default{
+    data() {
+      return {
+        client: [],
+        dogs: [],
+        id: this.$route.params.id
+      }
+    },
+    created() {
+      // get client by ID
+      axios.get("http://localhost:3000/api/clients/client/" + this.id)
+      .then(res => {
+        this.client = res.data.data
+
+        // get client's dogs by ID
+        axios.get("http://localhost:3000/api/dogs/dogPerClient/" + this.id)
+        .then(res => {
+          this.dogs = res.data.data
+        })
+        .catch(console.log(err))
+      })
+      .catch(err => console.log(err))
+    }
+    
   }
 </script>
 
@@ -55,5 +74,11 @@ color: aliceblue;
 /* background-color: aliceblue; */
 }
 
-
+#dog-link{
+  color: white;
+  text-decoration: underline;
+}
+#dog-link:hover{
+  color: #888;
+}
 </style>

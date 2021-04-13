@@ -7,12 +7,18 @@
 
         <!-- Search bar -->
         <div class="d-flex justify-content-center">
-            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search clients..."/>
+            <input type="text" class="form-control input-field" id="search-bar" placeholder="Search clients..." v-model="search"/>
         </div>
 
         <!-- Client component -->
-        <div class="d-flex justify-content-center" id="clientCard">
-            <Client/>
+        <div class="d-flex justify-content-center" id="clientCard" v-for="client in filteredClients" :key="client.id">
+            <Client
+            v-bind:fname="client.fname"
+            v-bind:lname="client.lname"
+            v-bind:phone="client.phone"
+            v-bind:email="client.email"
+            v-bind:id="client.id"
+            />
         </div>
 
         <!-- positions button on bottom of page -->
@@ -41,8 +47,34 @@ export default {
   data() {
       return {
           id: this.$route.params.id,
-          client: []
+          clients: [],
+          dogs: [],
+          search: ''
       }
+  },
+  created() {
+      axios.get("http://localhost:3000/api/clients")
+      .then(res => {
+            this.clients = res.data.data
+
+            // get client's dogs by ID
+            axios.get("http://localhost:3000/api/dogs/dogPerClient/" + this.clients)
+            .then(res => {
+            this.dogs = res.data.data
+            console.log(this.dogs)
+            })
+            .catch(console.log(err))
+        })
+      .catch(err => {
+            console.log(err)
+      })
+  },
+  computed: {
+      filteredClients(){
+            return this.clients.filter((client) => {
+                return client.fname.toLowerCase().match(this.search) || client.lname.toLowerCase().match(this.search) || client.email.toLowerCase().match(this.search)
+            })
+        }
   }
 }
 </script>
