@@ -58,7 +58,7 @@ exports.update = (req,res) => {
     const id = req.params.id;
     console.log(id)
     const updateDog = {
-        dog_name: req.body.name,
+        dog_name: req.body.dog_name,
         blacklistId: req.body.blacklistID,
         ClientInformationId: req.body.ClientInformationId,
         age: req.body.age,
