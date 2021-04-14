@@ -25,10 +25,10 @@
         </div>
 
         <!-- other client information -->
-        <div class="d-flex flex-column align-items-start" id="client-section" v-if="dogs">
+        <div class="d-flex flex-column align-items-start" id="client-section">
           <h6 class="font-weight-bold" id="heading">Other Information</h6>
 
-          <div class="d-flex flex-row align-items-start" id="dogs-owned">
+          <div class="d-flex flex-row align-items-start" id="dogs-owned"  v-if="dogs.length !== 0">
             <!-- dogs owned -->
             <p>Dog's owned: </p>
             <!-- loop through dogs owned -->
@@ -48,9 +48,11 @@
         </div>
 
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+          <!-- update client -->
           <div class="p-2 bd-highlight">
-            <a class="btn btn-primary" href="#" role="button">Update</a>
+            <router-link class="btn btn-primary" href="#" role="button" v-bind:to="'/updateClient/' + id">Update</router-link>
           </div>
+          <!-- delete client -->
           <div class="p-2 bd-highlight">
             <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteClient">Delete</a>
           </div>

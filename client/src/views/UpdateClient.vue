@@ -1,51 +1,51 @@
 <template>
-    <div>
+  <div>
         <!-- heading label -->
-        <h5 class="text-light">New Client</h5>
+        <h5 class="text-light">Update Client</h5>
         <!-- create client form -->
-        <form class="form d-flex flex-column needs-validation"  v-on:submit.prevent="newClient">
+        <form class="form d-flex flex-column needs-validation"  v-on:submit.prevent="updateClient">
 
             <!-- client name -->
             <div class="form-row">
                 <label for="clientName" class="text-light">First Name</label>
-                <input type="text" required class="form-control" id="clientName" name="fname" v-model="fname" placeholder="First name">
+                <input type="text" required class="form-control" id="clientName" name="fname" v-model="client.fname" placeholder="First name">
             </div>
 
             <!-- client name -->
             <div class="form-row">
                 <label for="clientName" class="text-light">Last Name</label>
-                <input type="text" required class="form-control" id="clientName" name="lname" v-model="lname" placeholder="Last name">
+                <input type="text" required class="form-control" id="clientName" name="lname" v-model="client.lname" placeholder="Last name">
             </div>
 
             <!-- client phone -->
             <div class="form-row">
                 <label for="phone" class="text-light">Phone</label>
-                <input type="phone" required class="form-control" id="phone" name="phone" v-model="phone" @input="acceptNumber" placeholder="Phone">
+                <input type="phone" required class="form-control" id="phone" name="phone" v-model="client.phone" @input="acceptNumber" placeholder="Phone">
             </div>
 
             <!-- client email -->
             <div class="form-row">
                 <label for="email" class="text-light">Email</label>
-                <input type="email" required class="form-control" id="email" name="email" v-model="email" placeholder="Email">
+                <input type="email" required class="form-control" id="email" name="email" v-model="client.email" placeholder="Email">
             </div>
 
             <!-- notes about the client -->
             <div class="form-row">
                 <label for="clientNotes" class="text-light">Client notes</label>
-                <textarea class="form-control" id="clientNotes" rows="3" name="notes" v-model="notes" placeholder="Client notes..."></textarea>
+                <textarea class="form-control" id="clientNotes" rows="3" name="notes" v-model="client.notes" placeholder="Client notes..."></textarea>
             </div>
 
             <!-- blacklist the client -->
             <div class="form-row justify-content-start">
                 <label for="clientNotes" class="text-light">Blacklist client:</label>
                 <div class="form-check">
-                    <input class="form-check-input" required type="radio" name="blacklistId" v-model="blacklistId" value="1" id="flexRadioDefault1">
+                    <input class="form-check-input" required type="radio" name="blacklistId" v-model="client.blacklistId" value="1" id="flexRadioDefault1">
                     <label class="form-check-label text-light" for="flexRadioDefault1">
                         Yes (Blacklist Client)
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="blacklistId" v-model="blacklistId" value="3" id="flexRadioDefault2" checked>
+                    <input class="form-check-input" type="radio" name="blacklistId" v-model="client.blacklistId" value="3" id="flexRadioDefault2" checked>
                     <label class="form-check-label text-light" for="flexRadioDefault2">
                         No
                     </label>
@@ -80,13 +80,17 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            fname: '',
-            lname: '',
-            phone: '',
-            email: '',
-            notes: '',
-            blacklistId: ''
+            id: this.$route.params.id,
+            client: []
         }
+    },
+    created(){
+        // get client by ID
+        axios.get("http://localhost:3000/api/clients/client/" + this.id)
+        .then(res => {
+            this.client = res.data.data
+        })
+        .catch(err => console.log(err))
     },
     methods: {
         // format phone numbers
@@ -95,44 +99,26 @@ export default {
             this.phone = !x[2] ? x[1] : x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
         },
         // create newClient model and pass it into API PUT request to create client
-        newClient() {
-            let newclient = {
-                fname:  this.fname,
-                lname: this.lname,
-                phone: this.phone,
-                email: this.email,
-                notes: this.notes,
-                blacklistId: this.blacklistId
+        updateClient() {
+            let updateclient = {
+                fname:  this.client.fname,
+                lname: this.client.lname,
+                phone: this.client.phone,
+                email: this.client.email,
+                notes: this.client.notes,
+                blacklistId: this.client.blacklistId
             }
-            axios.post("http://localhost:3000/api/clients/create/", newclient)
+            axios.put("http://localhost:3000/api/clients/updateClient/" + this.id, updateclient)
             .then(() => {
-                this.$router.push('/clients')
+                this.$router.go(-1)
                 })
             .catch(err => console.log(err))
         }
     }
+
 }
 </script>
 
 <style>
-.form{
-    margin: 0 1.5rem 2rem;
-}
-.form-row{
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-}
-.form-button{
-    padding-top: .5rem;
-}
-.p-2{
-    margin: .5rem 1rem 0 0;
-}
-/* To right-justify button content on the page */
-.flex-row{
-    margin-left: auto;
-    margin-right: 3.5rem;
-    margin-bottom: 1rem;
-}
 
 </style>
