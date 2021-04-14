@@ -44,8 +44,7 @@
           <!-- check to see if there is client notes and display them -->
           <p v-if="client.notes">Client Notes: {{client.notes}}</p>
           <!-- check blacklist status -->
-          <p v-if="client.blacklistId == 2">BLACKILIST UNDER REVIEW</p>
-          <p v-if="client.blacklistId == 3">BLACKLISTED: DO NOT DO BUSINESS</p>
+          <p v-if="client.blacklistId == 1">BLACKLISTED: DO NOT DO BUSINESS</p>
         </div>
 
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">

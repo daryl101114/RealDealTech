@@ -7,38 +7,55 @@
 
             <!-- client name -->
             <div class="form-row">
-                <label for="clientName" class="text-light">Name</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Client name">
+                <label for="clientName" class="text-light">First Name</label>
+                <input type="text" class="form-control" id="clientName" name="fname" v-model="fname" placeholder="First name">
+            </div>
+
+            <!-- client name -->
+            <div class="form-row">
+                <label for="clientName" class="text-light">Last Name</label>
+                <input type="text" class="form-control" id="clientName" name="lname" v-model="lname" placeholder="Last name">
             </div>
 
             <!-- client phone -->
             <div class="form-row">
                 <label for="phone" class="text-light">Phone</label>
-                <input type="phone" class="form-control" id="phone" placeholder="Phone">
+                <input type="phone" class="form-control" id="phone" name="phone" v-model="phone" @input="acceptNumber" placeholder="Phone">
             </div>
 
             <!-- client email -->
             <div class="form-row">
                 <label for="email" class="text-light">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email">
-            </div>
-
-            <!-- clients' dogs -->
-            <div class="form-row">
-                <label for="dogsOwned" class="text-light">Dogs owned</label>
-                <input type="text" class="form-control" id="dowsOwned" placeholder="Dogs names">
+                <input type="email" class="form-control" id="email" name="email" v-model="email" placeholder="Email">
             </div>
 
             <!-- notes about the client -->
             <div class="form-row">
                 <label for="clientNotes" class="text-light">Client notes</label>
-                <textarea class="form-control" id="clientNotes" rows="3" placeholder="Client notes..."></textarea>
+                <textarea class="form-control" id="clientNotes" rows="3" name="notes" v-model="notes" placeholder="Client notes..."></textarea>
+            </div>
+
+            <!-- blacklist the client -->
+            <div class="form-row justify-content-start">
+                <label for="clientNotes" class="text-light">Blacklist client:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="blacklistId" v-model="blacklistId" value="1" id="flexRadioDefault1">
+                    <label class="form-check-label text-light" for="flexRadioDefault1">
+                        Yes (Blacklist Client)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="blacklistId" v-model="blacklistId" value="3" id="flexRadioDefault2" checked>
+                    <label class="form-check-label text-light" for="flexRadioDefault2">
+                        No
+                    </label>
+                </div>
             </div>
 
             <!-- submit and cancel buttons -->
             <div class="d-flex flex-row">
                 <!-- May need input type="submit" instead? -->
-                <button type="submit" class="btn btn-success form-button p-2">Submit</button>
+                <button type="submit" v-on:click="newClient" class="btn btn-success form-button p-2">Submit</button>
                 <input type="reset" value="Clear" class="btn btn-success form-button p-2">                
                 <!-- <router-link to="/clients" class="btn btn-success form-button p-2">Cancel</router-link> -->
             </div>
@@ -58,8 +75,40 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-    
+    data() {
+        return {
+            fname: '',
+            lname: '',
+            phone: '',
+            email: '',
+            notes: '',
+            blacklistId: ''
+        }
+    },
+    methods: {
+        // format phone numbers
+        acceptNumber() {
+            var x = this.phone.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            this.phone = !x[2] ? x[1] : x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
+        },
+        // create newClient model and pass it into API PUT request to create client
+        newClient() {
+            let newclient = {
+                fname:  this.fname,
+                lname: this.lname,
+                phone: this.phone,
+                email: this.email,
+                notes: this.notes,
+                blacklistId: this.blacklistId
+            }
+            axios.post("http://localhost:3000/api/clients/create", newclient)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+        }
+    }
 }
 </script>
 
