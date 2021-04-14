@@ -104,7 +104,7 @@ export default {
                 notes: this.notes,
                 blacklistId: this.blacklistId
             }
-            axios.post("http://localhost:3000/api/clients/create", newclient)
+            axios.post("http://localhost:3000/api/clients/create/", newclient)
             .then(res => console.log(res))
             .catch(err => console.log(err))
         }

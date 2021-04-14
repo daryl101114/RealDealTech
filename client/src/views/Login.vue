@@ -44,6 +44,7 @@ export default {
         password: this.password,
       })
       .then(res => {
+        this.$router.push('/clients')
         console.log(res)
       })
       .catch(err => {
