@@ -107,7 +107,7 @@ export default {
             axios.post("http://localhost:3000/api/clients/create/", newclient)
             .then(() => {
                 this.$router.push('/clients')
-                })
+            })
             .catch(err => console.log(err))
         }
     }
