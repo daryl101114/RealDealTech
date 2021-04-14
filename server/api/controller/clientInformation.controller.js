@@ -91,6 +91,10 @@ Client.findOne(
 exports.delete = (req,res) => {
     const id = req.params.id
     Client.destroy({where: {id: {[Op.eq]: id }}})
+    .then(
+      res.status(200).send("It worked!")
+    )
+    .catch(error => res.status(500).send(error))
 }
 
 //TODO: 

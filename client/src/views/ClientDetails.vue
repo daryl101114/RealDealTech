@@ -52,7 +52,7 @@
             <a class="btn btn-primary" href="#" role="button">Update</a>
           </div>
           <div class="p-2 bd-highlight">
-            <a class="btn btn-primary" href="#" role="button" v-on:click="deleteClient">Delete</a>
+            <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteClient">Delete</a>
           </div>
           <div class="p-2 bd-highlight">
             <router-link to="/clients" class="btn btn-primary">Cancel</router-link>
@@ -92,9 +92,9 @@
     methods: {
       deleteClient: function() {
         axios.delete("http://localhost:3000/api/clients/delete/" + this.id)
-        .then(res => {
-          this.res.splice(this.id, 1)
+        .then((res) => {
           console.log(res)
+          this.$router.push('/clients')
          })
          .catch(err => console.log(err))
       }
