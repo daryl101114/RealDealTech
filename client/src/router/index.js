@@ -11,6 +11,7 @@ import AddClient from '../views/AddClient.vue'
 import AddDog from '../views/AddDog.vue'
 import AddStay from '../views/AddStay.vue'
 import StayDetails from '../views/StayDetails.vue'
+import Login from '../views/Login.vue'
 
 
 
@@ -80,6 +81,11 @@ const routes = [
     path: '/stayDetails/:id',
     name: 'StayDetails',
     component: StayDetails
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 
