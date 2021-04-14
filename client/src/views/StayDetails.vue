@@ -2,8 +2,19 @@
     <div class="border">
       <!-- make page column format -->
       <div class="d-flex flex-column">
-        <!-- page heading -->
-        <h5 class="font-weight-bold">Stay Details</h5>
+        <!-- header section -->
+        <div class="d-flex stay-title">
+            <!-- Back button -->
+            <a class="h5 page-heading back-button" @click="$router.go(-1)">
+                <svg class="bi bi-arrow-left-short" width="1.5em" height="1.5em" viewBox="0 0 16 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+            <!-- Page heading -->
+            <h4>Stay Details</h4>
+        </div>
+
 
         <!-- Date information -->
         <div class="d-flex flex-column align-items-start" id="stay-section">
@@ -81,7 +92,11 @@ background: radial-gradient(circle, rgba(115,106,110,1) 0%, rgba(84,110,122,1) 9
 color: aliceblue;
 /* background-color: aliceblue; */
 }
-
+.stay-title{
+  margin: auto;
+  margin-top: 10px;
+  font: large;
+}
 #stay-section{
   margin: .5rem 1rem;
 }
