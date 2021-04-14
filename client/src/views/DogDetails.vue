@@ -51,6 +51,7 @@
                 <p class="p-2 bd-highlight">{{dog.rating}}</p>
             </div>
 
+            <!-- dog owner -->
             <div class="d-flex dog-info" v-if="dog.Client_Information">
                 <p class="p-2 bd-highlight" id="field">Dog owner:</p>
                 <router-link class="text-light" v-bind:to="'/clientDetails/' + dog.ClientInformationId">
@@ -59,12 +60,17 @@
             </div>
 
 
-            <div class="d-flex flex-row bd-highlight mb-3 justify-content-center dog-info">
-                <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Report Card</a></div>
-                <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Update</a></div>
-                <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Delete</a></div>
-                <div class="p-2 bd-highlight"><router-link to="/dogs" class="btn btn-primary">Cancel</router-link></div>
+            <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+                <!-- update dog -->
+                <div class="p-2 bd-highlight">
+                    <router-link class="btn btn-primary" href="#" role="button" v-bind:to="'/updateDog/' + id">Update</router-link>
+                </div>
+                <!-- delete client -->
+                <div class="p-2 bd-highlight">
+                    <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteDog">Delete</a>
+                </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -87,6 +93,18 @@ export default{
       .catch(err => {
           console.log(err)
       })
+  },
+  methods: {
+    //   delete dog
+    deleteDog: function() {
+        axios.delete("http://localhost:3000/api/dogs/dogDelete/" + this.id)
+        .then((res) => {
+          console.log(res)
+          this.$router.push('/dogs')
+         })
+         .catch(err => console.log(err))
+    }
+
   }
 
 }
