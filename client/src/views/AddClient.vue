@@ -3,30 +3,30 @@
         <!-- heading label -->
         <h5 class="text-light">New Client</h5>
         <!-- create client form -->
-        <form class="form d-flex flex-column">
+        <form class="form d-flex flex-column needs-validation"  v-on:submit.prevent="newClient">
 
             <!-- client name -->
             <div class="form-row">
                 <label for="clientName" class="text-light">First Name</label>
-                <input type="text" class="form-control" id="clientName" name="fname" v-model="fname" placeholder="First name">
+                <input type="text" required class="form-control" id="clientName" name="fname" v-model="fname" placeholder="First name">
             </div>
 
             <!-- client name -->
             <div class="form-row">
                 <label for="clientName" class="text-light">Last Name</label>
-                <input type="text" class="form-control" id="clientName" name="lname" v-model="lname" placeholder="Last name">
+                <input type="text" required class="form-control" id="clientName" name="lname" v-model="lname" placeholder="Last name">
             </div>
 
             <!-- client phone -->
             <div class="form-row">
                 <label for="phone" class="text-light">Phone</label>
-                <input type="phone" class="form-control" id="phone" name="phone" v-model="phone" @input="acceptNumber" placeholder="Phone">
+                <input type="phone" required class="form-control" id="phone" name="phone" v-model="phone" @input="acceptNumber" placeholder="Phone">
             </div>
 
             <!-- client email -->
             <div class="form-row">
                 <label for="email" class="text-light">Email</label>
-                <input type="email" class="form-control" id="email" name="email" v-model="email" placeholder="Email">
+                <input type="email" required class="form-control" id="email" name="email" v-model="email" placeholder="Email">
             </div>
 
             <!-- notes about the client -->
@@ -39,7 +39,7 @@
             <div class="form-row justify-content-start">
                 <label for="clientNotes" class="text-light">Blacklist client:</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="blacklistId" v-model="blacklistId" value="1" id="flexRadioDefault1">
+                    <input class="form-check-input" required type="radio" name="blacklistId" v-model="blacklistId" value="1" id="flexRadioDefault1">
                     <label class="form-check-label text-light" for="flexRadioDefault1">
                         Yes (Blacklist Client)
                     </label>
@@ -55,7 +55,7 @@
             <!-- submit and cancel buttons -->
             <div class="d-flex flex-row">
                 <!-- May need input type="submit" instead? -->
-                <button type="submit" v-on:click="newClient" class="btn btn-success form-button p-2">Submit</button>
+                <button type="submit" class="btn btn-success form-button p-2">Submit</button>
                 <input type="reset" value="Clear" class="btn btn-success form-button p-2">                
                 <!-- <router-link to="/clients" class="btn btn-success form-button p-2">Cancel</router-link> -->
             </div>
@@ -105,7 +105,9 @@ export default {
                 blacklistId: this.blacklistId
             }
             axios.post("http://localhost:3000/api/clients/create/", newclient)
-            .then(res => console.log(res))
+            .then(res => {
+                this.$router.push('/clients')
+                })
             .catch(err => console.log(err))
         }
     }
