@@ -1,8 +1,8 @@
 <template>
   <div class="test">
     <div class="moreNav">
-      <button style="background-color: black"><a href="/">Original Home Page</a></button>
-      <button style="background-color: black"><a href="/dev">Development Test Page</a></button>
+      <button style="background-color: black"><a href="/#/home">Original Home Page</a></button>
+      <button style="background-color: black"><a href="/#/dev">Development Test Page</a></button>
     </div>
     <img id="logo" alt="Vue logo" src="../assets/ourLogo.png">
     <!-- The TestComp page is always showing at the top of the Test.vue. -->
