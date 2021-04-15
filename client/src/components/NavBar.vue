@@ -41,10 +41,10 @@ export default {
   color: #42b983;
   background-color:#1f3041;
 }
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
     #nav a {
         display: flex;
         flex-direction: column;
     }
-}
+} */
 </style>
