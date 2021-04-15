@@ -1,32 +1,32 @@
 <template>
     <div>
         <!-- heading label -->
-        <h5 class="text-light">New Dog</h5>
+        <h5 class="text-light">Update Dog</h5>
         <!-- create dog form -->
-        <form class="form d-flex flex-column" v-on:submit.prevent="newDog">
+        <form class="form d-flex flex-column" v-on:submit.prevent="updateDog">
 
             <!-- dog name -->
             <div class="form-row">
                 <label for="dog_name" class="text-light">Name</label>
-                <input require type="text" class="form-control" name="dog_name" v-model="dog_name" placeholder="Dog name">
+                <input require type="text" class="form-control" name="dog_name" v-model="dog.dog_name" placeholder="Dog name">
             </div>
 
             <!-- dog age -->
             <div class="form-row">
                 <label for="age" class="text-light">Age</label>
-                <input require type="number" min="0" max="20" class="form-control" name="age" v-model="age" placeholder="Age">
+                <input require type="number" min="0" max="20" class="form-control" name="age" v-model="dog.age" placeholder="Age">
             </div>
 
             <!-- dog breed -->
             <div class="form-row">
                 <label for="breed" class="text-light">Breed</label>
-                <input require type="text" class="form-control" name="breed" v-model="breed" placeholder="Breed">
+                <input require type="text" class="form-control" name="breed" v-model="dog.breed" placeholder="Breed">
             </div>
 
             <!-- dog gender -->
             <div class="form-row">
                 <label for="gender" class="text-light">Gender</label>
-                <select require class="form-control" name="gender" v-model="gender">
+                <select require class="form-control" name="gender" v-model="dog.gender">
                     <option selected disabled>Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -36,7 +36,7 @@
             <!-- dog owner -->
             <div class="form-row" v-if="clients">
                 <label class="text-light" for="exampleFormControlSelect1">Dog Owner</label>
-                <select class="form-control" name="ClientInformationId" v-model="ClientInformationId">
+                <select class="form-control" name="ClientInformationId" v-model="dog.ClientInformationId">
                     <option selected disabled>Owner</option>
                     <option v-for="client in clients" :key="client.id" :value="client.id">{{client.fname}} {{client.lname}}</option>
                 </select>
@@ -45,19 +45,19 @@
             <!-- notes about the dog -->
             <div class="form-row">
                 <label for="notes" class="text-light">Dog notes</label>
-                <textarea class="form-control" name="notes" rows="3" placeholder="Dog notes..." v-model="notes"></textarea>
+                <textarea class="form-control" name="notes" rows="3" placeholder="Dog notes..." v-model="dog.notes"></textarea>
             </div>
 
             <!-- instructions for stays-->
             <div class="form-row">
                 <label for="instructions" class="text-light">Instructions For Dog</label>
-                <textarea class="form-control" name="instructions" rows="3" placeholder="Instructions for dog..." v-model="instructions"></textarea>
+                <textarea class="form-control" name="instructions" rows="3" placeholder="Instructions for dog..." v-model="dog.instructions"></textarea>
             </div>
 
             <!-- dog rating-->
             <div class="form-row">
                 <label for="rating" class="text-light">Dog rating</label>
-                <select require class="form-control" name="rating" v-model="rating">
+                <select require class="form-control" name="rating" v-model="dog.rating">
                     <option selected disabled>Rating</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -71,13 +71,13 @@
             <div class="form-row justify-content-start">
                 <label for="clientNotes" class="text-light">Blacklist dog:</label>
                 <div class="form-check">
-                    <input class="form-check-input" required type="radio" name="blacklistId" v-model="blacklistId" value="1" id="flexRadioDefault1">
+                    <input class="form-check-input" required type="radio" name="blacklistId" v-model="dog.blacklistId" value="1" id="flexRadioDefault1">
                     <label class="form-check-label text-light" for="flexRadioDefault1">
                         Yes (Blacklist Client)
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="blacklistId" v-model="blacklistId" value="3" id="flexRadioDefault2" checked>
+                    <input class="form-check-input" type="radio" name="blacklistId" v-model="dog.blacklistId" value="3" id="flexRadioDefault2" checked>
                     <label class="form-check-label text-light" for="flexRadioDefault2">
                         No
                     </label>
@@ -113,44 +113,46 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            clients: [],
-            dog_name: '',
-            age: '',
-            gender: '',
-            breed: '',
-            notes: '',
-            instructions: '',
-            rating: '',
-            blacklistId: '',
-            ClientInformationId: ''
+            id: this.$route.params.id,
+            dog: [],
+            clients: []
         }
     },
     created() {
+    //  call dog information to fill form
+        axios.get("http://localhost:3000/api/dogs/dog/" + this.id)
+        .then(res => {
+            this.dog = res.data.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
     //   call client list from API
-      axios.get("http://localhost:3000/api/clients")
-      .then(res => {
-            this.clients = res.data.data
-      })
-      .catch(err => console.log(err))
+        axios.get("http://localhost:3000/api/clients")
+        .then(res => {
+                this.clients = res.data.data
+        })
+        .catch(err => console.log(err))
     },
     methods: {
         // create newClient model and pass it into API PUT request to create client
-        newDog() {
+        updateDog() {
             let dog = {
-                dog_name: this.dog_name,
-                age: this.age,
-                gender: this.gender,
-                breed: this.breed,
-                notes: this.notes,
-                instructions: this.instructions,
-                rating: this.rating,
-                blacklistID: this.blacklistId,
-                ClientInformationId: this.ClientInformationId
+                dog_name: this.dog.dog_name,
+                age: this.dog.age,
+                gender: this.dog.gender,
+                breed: this.dog.breed,
+                notes: this.dog.notes,
+                instructions: this.dog.instructions,
+                rating: this.dog.rating,
+                blacklistID: this.dog.blacklistId,
+                ClientInformationId: this.dog.ClientInformationId
             }
-            axios.post("http://localhost:3000/api/dogs/add/", dog)
+            axios.put("http://localhost:3000/api/dogs/dogUpdate/" + this.id, dog)
             .then(() => {
                 this.$router.push('/dogs')
-            })
+                })
             .catch(err => console.log(err, dog))
         }
     }

@@ -35,7 +35,7 @@ exports.getOne = (req, res) => {
 //CREATE A RECORD
 exports.create = (req, res) => {
     const dog = {
-        dog_name: req.body.name,
+        dog_name: req.body.dog_name,
         blacklistId: req.body.blacklistID,
         ClientInformationId: req.body.ClientInformationId,
         age: req.body.age,
@@ -43,7 +43,7 @@ exports.create = (req, res) => {
         breed: req.body.breed,
         notes: req.body.notes,
         instructions: req.body.instructions,
-        ratings: req.body.ratings
+        rating: req.body.rating
       };
       Dog.create(dog).then(data => {
         res.send(data);
@@ -58,7 +58,7 @@ exports.update = (req,res) => {
     const id = req.params.id;
     console.log(id)
     const updateDog = {
-        dog_name: req.body.name,
+        dog_name: req.body.dog_name,
         blacklistId: req.body.blacklistID,
         ClientInformationId: req.body.ClientInformationId,
         age: req.body.age,
@@ -97,6 +97,10 @@ Dog.findOne({where: {id: {[Op.eq]: id }},})
 exports.delete = (req,res) => {
     const id = req.params.id
     Dog.destroy({where: {id: {[Op.eq]: id }}})
+    .then(
+      res.status(200).send("It worked!")
+    )
+    .catch(error => res.status(500).send(error))
 }
 
 //GET ALL DOG WITHIN A CLIENT

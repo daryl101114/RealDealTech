@@ -1,37 +1,66 @@
 <template>
     <div class="border">
-      <!-- Client name -->
-      <div class="d-inline-flex p-2 bd-highlight"><h5>{{client.fname}} {{client.lname}}</h5></div>
-      
-      <div class="d-flex flex-column bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Contact Information</div>
-        <div class="p-2 bd-highlight">Phone: {{client.phone}}</div>
-        <div class="p-2 bd-highlight">Email: {{client.email}}</div>
-      </div>
+      <!-- make page column -->
+      <div class="d-flex flex-column" id="details-section">
+        
+        <!-- header section -->
+        <div class="d-flex client-title">
+            <!-- Back button -->
+            <a class="h5 page-heading back-button" @click="$router.go(-1)">
+                <svg class="bi bi-arrow-left-short" width="1.5em" height="1.5em" viewBox="0 0 16 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 010 .708L5.207 8l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+            <!-- Page heading -->
+            <h4>{{client.fname}}'s Details</h4>
+        </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3">
-          <div class="p-2 bd-highligh">Dogs owned:</div>
-          <div class="p-2 bd-highlight" v-for="dog in dogs" :key="dog.id">
-            <router-link v-bind:to="'/dogdetails/' + dog.id"  id="dog-link">
-              <h6>{{dog.dog_name}}</h6>
-            </router-link>
+        <!-- contact information -->
+        <div class="d-flex flex-column align-items-start" id="client-section">
+          <h6 class="font-weight-bold" id="heading">Contact Information</h6>
+          <p>Name: {{client.fname}} {{client.lname}}</p>
+          <p>Phone: {{client.phone}}</p>
+          <p>Email: {{client.email}}</p>
+        </div>
+
+        <!-- other client information -->
+        <div class="d-flex flex-column align-items-start" id="client-section">
+          <h6 class="font-weight-bold" id="heading">Other Information</h6>
+
+          <div class="d-flex flex-row align-items-start" id="dogs-owned"  v-if="dogs.length !== 0">
+            <!-- dogs owned -->
+            <p>Dog's owned: </p>
+            <!-- loop through dogs owned -->
+            <ul class="list-group list-group-horizontal" v-for="dog in dogs" :key="dog.id">
+              <li id="dog-link">
+                <router-link class="text-light" v-bind:to="'/dogdetails/' + dog.id">
+                  <p>{{dog.dog_name}}</p>
+                </router-link>
+              </li>
+            </ul>
           </div>
-      </div>
+          
+          <!-- check to see if there is client notes and display them -->
+          <p v-if="client.notes">Client Notes: {{client.notes}}</p>
+          <!-- check blacklist status -->
+          <p v-if="client.blacklistId == 1">BLACKLISTED: DO NOT DO BUSINESS</p>
+        </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3" v-if="client.notes">
-        <div class="p-2 bd-highlight">Notes:</div>
-        <div class="p-2 bd-highlight">{{client.notes}}</div>
-      </div>
+        <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+          <!-- update client -->
+          <div class="p-2 bd-highlight">
+            <router-link class="btn btn-primary" href="#" role="button" v-bind:to="'/updateClient/' + id">Update</router-link>
+          </div>
+          <!-- delete client -->
+          <div class="p-2 bd-highlight">
+            <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteClient">Delete</a>
+          </div>
+          <div class="p-2 bd-highlight">
+            <router-link to="/clients" class="btn btn-primary">Cancel</router-link>
+          </div>
+        </div>
 
-      <div class="d-flex flex-row bd-highlight mb-3">
-        <div class="p-2 bd-highlight">Black Listed:</div>
-        <div class="p-2 bd-highlight">{{client.blacklist.blacklist_desc}}</div>
-      </div>
-
-      <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-        <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Update</a></div>
-        <div class="p-2 bd-highlight"><a class="btn btn-primary" href="#" role="button">Delete</a></div>
-        <div class="p-2 bd-highlight"><router-link to="/clients" class="btn btn-primary">Cancel</router-link></div>
       </div>
     </div>
 </template>
@@ -58,9 +87,20 @@
         .then(res => {
           this.dogs = res.data.data
         })
-        .catch(console.log(err))
+        .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
+    },
+    methods: {
+      // delete client
+      deleteClient: function() {
+        axios.delete("http://localhost:3000/api/clients/delete/" + this.id)
+        .then((res) => {
+          console.log(res)
+          this.$router.push('/clients')
+         })
+         .catch(err => console.log(err))
+      }
     }
     
   }
@@ -74,11 +114,32 @@ color: aliceblue;
 /* background-color: aliceblue; */
 }
 
+#details-section{
+  margin-top: 1rem;
+}
+
+ul{
+  list-style: none;
+}
+.client-title{
+    margin: auto;
+    margin-top: 10px;
+    font: large;
+}
 #dog-link{
   color: white;
   text-decoration: underline;
 }
 #dog-link:hover{
   color: #888;
+}
+#client-section{
+  margin: .5rem 1rem;
+}
+#dogs-owned{
+  margin-left: 0;
+}
+#dog-link{
+  padding-left: .5rem;
 }
 </style>

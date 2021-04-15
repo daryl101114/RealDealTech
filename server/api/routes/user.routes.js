@@ -4,9 +4,7 @@ module.exports = app => {
     
     //SIGNUP API
     router.post("/signup", users.create)
-    router.post("/login", users.signin)
-
-
+    router.post("/login", users.login)
 
     //API ROUTES
     app.use('/api/users', router)

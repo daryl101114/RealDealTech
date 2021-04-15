@@ -63,7 +63,7 @@ export default {
             .then(res => {
             this.dogs = res.data.data
             })
-            .catch(console.log(err))
+            .catch(err => console.log(err))
         })
       .catch(err => {
             console.log(err)
