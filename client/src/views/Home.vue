@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+    <div class="moreNav">
+      <button style="background-color: black"><a href="/#/">Original Home Page</a></button>
+      <button style="background-color: black"><a href="/#/dev">Development Test Page</a></button>
+    </div>
     <img id="logo" alt="Vue logo" src="../assets/ourLogo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button class="button" style="vertical-align:middle" onclick=" window.open('https://jpsulak.wixsite.com/home','_blank')"><span>Click Me! </span></button>
@@ -68,5 +72,13 @@ export default {
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+.moreNav{
+  margin: 1rem;
+}
+.moreNav a{
+  text-decoration: none;
+  color: aliceblue;
+  margin: 1rem;
 }
 </style>

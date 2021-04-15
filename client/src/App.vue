@@ -6,8 +6,7 @@
       <router-link to="/stays">Stays</router-link> 
       
       <!-- <router-link to="/">Home</router-link> -->
-      <!-- | -->
-      <router-link to="/test">Test</router-link>
+      <!-- <router-link to="/dev">Test</router-link> -->
       <!-- <router-link to="/about">About</router-link> | -->
     </div>
     <router-view/>
@@ -49,7 +48,6 @@
 } */
 
 #nav a {
-  
   text-decoration: none;
   padding: 1rem;
   font-weight: bold;
@@ -68,10 +66,10 @@
   background-color:#1f3041;
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
     #nav a {
         display: flex;
         flex-direction: column;
     }
-}
+} */
 </style>
