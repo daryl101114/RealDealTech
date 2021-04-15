@@ -59,11 +59,11 @@
                 <label for="rating" class="text-light">Dog rating</label>
                 <select require class="form-control" name="rating" v-model="rating">
                     <option selected disabled>Rating</option>
-                    <option value="1">1</option>
+                    <option value="1">1 (Worst)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="5">5 (Best)</option>
                 </select>
             </div>
 
