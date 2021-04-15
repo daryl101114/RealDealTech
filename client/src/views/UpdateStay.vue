@@ -1,13 +1,13 @@
 <template>
     <div>
         <!-- heading label -->
-        <h5 class="text-light">New Stay</h5>
+        <h5 class="text-light">Update Stay</h5>
         <!-- create client form -->
-        <form class="form d-flex flex-column" v-on:submit.prevent="newStay">
+        <form class="form d-flex flex-column" v-on:submit.prevent="updateStay">
             <!-- client -->
             <div class="form-row" v-if="clients">
                 <label class="text-light" for="exampleFormControlSelect1">Client</label>
-                <select required class="form-control" name="clientId" v-model="clientId">
+                <select required class="form-control" name="ClientInformationId" v-model="stay.ClientInformationId">
                     <option selected disabled>Owner</option>
                     <option v-for="client in clients" :key="client.id" :value="client.id">{{client.fname}} {{client.lname}}</option>
                 </select>
@@ -16,42 +16,29 @@
             <!-- dog -->
             <div class="form-row" v-if="dogs">
                 <label class="text-light" for="exampleFormControlSelect1">Dog</label>
-                <select required class="form-control" name="dogId" v-model="dogId">
+                <select required class="form-control" name="dogId" v-model="stay.DogInformationId">
                     <option selected disabled>Owner</option>
                     <option v-for="dog in dogs" :key="dog.id" :value="dog.id">{{dog.dog_name}}</option>
                 </select>
             </div>
 
-            <!-- start date -->
-            <div class="form-row">
-                <label for="datePick" class="text-light">Stay Start Date</label>
-                <input required type="datetime-local" class="form-control" id="datePick" name="start_date" v-model="start_date">
-            </div>
-
-            <!-- end date -->
-            <div class="form-row">
-                <label for="datePick" class="text-light">Stay End Date</label>
-                <input required type="datetime-local" class="form-control" id="datePick" name="end_date" v-model="end_date">
-            </div>
-
             <!-- notes about the stay -->
             <div class="form-row">
                 <label for="note" class="text-light">Stay notes</label>
-                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..." name="note" v-model="note"></textarea>
+                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..." name="note" v-model="stay.note"></textarea>
             </div>
 
             <!-- notes about the client -->
             <div class="form-row">
                 <label for="instructions" class="text-light">Stay instructions</label>
-                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..." name="instructions" v-model="instructions"></textarea>
+                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..." name="instructions" v-model="stay.instructions"></textarea>
             </div>
 
             <!-- submit and cancel buttons -->
             <div class="d-flex flex-row">
                 <!-- May need input type="submit" instead? -->
                 <button type="submit" class="btn btn-success form-button p-2">Submit</button>
-                <input type="reset" value="Clear" class="btn btn-success form-button p-2">                
-                <!-- <router-link to="/clients" class="btn btn-success form-button p-2">Cancel</router-link> -->
+                <input type="reset" value="Clear" class="btn btn-success form-button p-2">             
             </div>
         </form>
 
@@ -75,49 +62,50 @@ import moment from 'moment'
 export default {
     data() {
         return {
+            id: this.$route.params.id,
+            stay: [],
             clients: [],
-            dogs: [],
-            start_date: '',
-            end_date: '',
-            note: '',
-            instructions: '',
-            clientId: '',
-            dogId: ''
+            dogs: []
         }
     },
     created() {
     //   call client list from API
-        axios.get("http://localhost:3000/api/clients")
+        axios.get("http://localhost:3000/api/stay/" + this.id)
         .then(res => {
-            this.clients = res.data.data
+            this.stay = res.data
         })
         .catch(err => console.log(err))
-
+    // get dogs
         axios.get("http://localhost:3000/api/dogs")
         .then(res => {
             this.dogs = res.data.data
         })
         .catch(err => console.log(err))
+    // get clients 
+        axios.get("http://localhost:3000/api/clients")
+        .then(res => {
+            this.clients = res.data.data
+        })
+        .catch(err => console.log(err))
     },
     methods: {
-        // create newStay model and pass it into API PUT request to create stay
-        newStay() {
+        // create new stay model and pass it into API PUT request to create client
+        updateStay() {
             let stay = {
-                start:  moment(this.start_date).format('YYYY-MM-DDThh:mm'),
-                end: moment(this.end_date).format('YYYY-MM-DDThh:mm'),
-                note: this.note,
-                instructions: this.instructions,
-                clientId: this.clientId,
-                dogId: this.dogId
+                start:  this.stay.start_date.toString(),
+                end: this.stay.end_date.toString(),
+                note: this.stay.note,
+                instructions: this.stay.instructions,
+                clientId: this.stay.ClientInformationId,
+                dogId: this.stay.DogInformationId
             }
-            axios.post("http://localhost:3000/api/stay/newStay/", stay)
+            axios.put("http://localhost:3000/api/stay/updateStay/" + this.id, stay)
             .then(() => {
                 this.$router.push('/stays')
-                console.log(this.stay)
-            })
-            .catch(err => console.log(err))
+                })
+            .catch(err => console.log(err, dog))
         }
-    }
+    }  
 }
 </script>
 
