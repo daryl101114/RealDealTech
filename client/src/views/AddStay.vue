@@ -7,7 +7,7 @@
             <!-- client -->
             <div class="form-row" v-if="clients">
                 <label class="text-light" for="exampleFormControlSelect1">Client</label>
-                <select class="form-control" name="clientId" v-model="clientId">
+                <select required class="form-control" name="clientId" v-model="clientId">
                     <option selected disabled>Owner</option>
                     <option v-for="client in clients" :key="client.id" :value="client.id">{{client.fname}} {{client.lname}}</option>
                 </select>
@@ -16,7 +16,7 @@
             <!-- dog -->
             <div class="form-row" v-if="dogs">
                 <label class="text-light" for="exampleFormControlSelect1">Dog</label>
-                <select class="form-control" name="dogId" v-model="dogId">
+                <select required class="form-control" name="dogId" v-model="dogId">
                     <option selected disabled>Owner</option>
                     <option v-for="dog in dogs" :key="dog.id" :value="dog.id">{{dog.dog_name}}</option>
                 </select>
@@ -25,13 +25,13 @@
             <!-- start date -->
             <div class="form-row">
                 <label for="datePick" class="text-light">Stay Start Date</label>
-                <input type="date" class="form-control" id="datePick" name="start_date" v-model="start_date">
+                <input required type="datetime-local" class="form-control" id="datePick" name="start_date" v-model="start_date">
             </div>
 
             <!-- end date -->
             <div class="form-row">
                 <label for="datePick" class="text-light">Stay End Date</label>
-                <input type="date" class="form-control" id="datePick" name="end_date" v-model="end_date">
+                <input required type="datetime-local" class="form-control" id="datePick" name="end_date" v-model="end_date">
             </div>
 
             <!-- notes about the stay -->
@@ -70,6 +70,7 @@
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
 
 export default {
     data() {
@@ -102,8 +103,8 @@ export default {
         // create newStay model and pass it into API PUT request to create stay
         newStay() {
             let stay = {
-                start_date:  this.start_date,
-                end_date: this.end_date,
+                start:  this.start_date.toString(),
+                end: this.end_date.toString(),
                 note: this.note,
                 instructions: this.instructions,
                 clientId: this.clientId,
@@ -112,6 +113,7 @@ export default {
             axios.post("http://localhost:3000/api/stay/newStay/", stay)
             .then(() => {
                 this.$router.push('/stays')
+                console.log(this.stay)
             })
             .catch(err => console.log(err))
         }

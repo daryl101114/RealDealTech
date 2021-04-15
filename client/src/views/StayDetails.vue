@@ -46,10 +46,25 @@
           <p>Breed: {{stay.Dog_Information.breed}}</p>
         </div>
 
+        <!-- notes and instructions -->
         <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.note || stay.instructions">
           <h5 class="font-weight-bold" id="heading">Stay information</h5>
           <p>Notes: {{stay.note}}</p>
           <p>Instructions: {{stay.instructions}}</p>
+        </div>
+
+        <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+          <!-- update client -->
+          <div class="p-2 bd-highlight">
+            <router-link class="btn btn-primary" href="#" role="button" v-bind:to="'/updateStay/' + id">Update</router-link>
+          </div>
+          <!-- delete client -->
+          <div class="p-2 bd-highlight">
+            <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteStay">Delete</a>
+          </div>
+          <div class="p-2 bd-highlight">
+            <router-link to="/stays" class="btn btn-primary">Cancel</router-link>
+          </div>
         </div>
 
       </div>
@@ -76,6 +91,16 @@
       .catch(err => {
           console.log(err)
       })
+    },
+    methods: {
+      //   delete stay
+      deleteStay: function() {
+          axios.delete("http://localhost:3000/api/stay/delete/" + this.id)
+          .then((res) => {
+            this.$router.push('/stays')
+          })
+          .catch(err => console.log(err))
+      }
     },
     filters: {
         moment: function (date) {
