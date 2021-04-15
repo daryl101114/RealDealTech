@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Image Here</a>
+      <!-- <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img class="navbar-brand" src="../src/assets/clientLogo.png"></img>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,7 +19,14 @@
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> -->
+    <div id="nav">
+      <a href="/#/login"><img src="../src/assets/clientLogo.png"></img></a>
+      <router-link to="/clients">Clients</router-link>
+      <router-link to="/dogs">Dogs</router-link> 
+      <router-link to="/stays">Stays</router-link>
+    </div>
+
       
       <!-- <router-link to="/">Home</router-link> -->
       <!-- <router-link to="/dev">Test</router-link> -->
@@ -42,13 +49,16 @@
   color: #2c3e50;
   background: #222;
 }
+#nav img{
+  max-height: 3.25rem;
+}
 
 #nav {
   overflow: hidden;
-  padding: 30px;
   color: aliceblue;
   background:#2c3e50;
-  padding: 1rem;
+  min-height: 3rem;
+  /* padding-top: .75rem; */
   margin-bottom: 1.5rem;
 }
 
