@@ -30,3 +30,18 @@ exports.create = (req, res) => {
         return res.status(500).send({message: err.message || "Some error occured"})
       })
 }
+
+//ALL VACCINE PER DOG
+exports.getAllVaccinePerDog = (req, res) => {
+  const dogId = req.params.id 
+
+  Vaccine.findAll({where: {DogInformationId: {[Op.eq]: dogId }},
+      include:[
+          {model: db.dogInfo}
+        ],}).then(records =>{
+      console.log(JSON.stringify(records));
+      res.status(200).send(records);
+  }).catch(err =>{
+     res.status(500).send({message: err.message});
+  })
+}

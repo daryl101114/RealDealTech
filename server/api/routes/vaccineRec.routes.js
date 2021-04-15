@@ -14,9 +14,10 @@ module.exports = app => {
     })
     const upload = multer({storage: storage})
     //-----------------------------------------------------------
-    
-    router.get('/record/:id', vaccRec.getOne);
-    router.post('/post', upload.single('vaccine_file') ,vaccRec.create);
+
+    router.get('/record/:id', vaccRec.getOne);//Get One Vaccination Record Based on ID
+    router.post('/post', upload.single('vaccine_file') ,vaccRec.create);//Stores Vaccination File in DB
+    router.get('/vaccinePerDog/:id',vaccRec.getAllVaccinePerDog)
 
     app.use("/api/vaccine", router)
 }
