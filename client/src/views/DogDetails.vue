@@ -62,11 +62,11 @@
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
                 <!-- update dog -->
                 <div class="p-2 bd-highlight">
-                    <router-link class="btn btn-primary" href="#" role="button" v-bind:to="'/updateDog/' + id">Update</router-link>
+                    <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/updateDog/' + id">Update</router-link>
                 </div>
                 <!-- delete client -->
                 <div class="p-2 bd-highlight">
-                    <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteDog">Delete</a>
+                    <a class="btn btn-success" href="#" role="button" v-on:click.prevent="deleteDog">Delete</a>
                 </div>
             </div>
 
@@ -98,7 +98,6 @@ export default{
     deleteDog: function() {
         axios.delete("http://localhost:3000/api/dogs/dogDelete/" + this.id)
         .then((res) => {
-          console.log(res)
           this.$router.push('/dogs')
          })
          .catch(err => console.log(err))

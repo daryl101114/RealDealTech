@@ -50,11 +50,11 @@
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
           <!-- update client -->
           <div class="p-2 bd-highlight">
-            <router-link class="btn btn-primary" href="#" role="button" v-bind:to="'/updateClient/' + id">Update</router-link>
+            <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/updateClient/' + id">Update</router-link>
           </div>
           <!-- delete client -->
           <div class="p-2 bd-highlight">
-            <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteClient">Delete</a>
+            <a class="btn btn-success" href="#" role="button" v-on:click.prevent="deleteClient">Delete</a>
           </div>
         </div>
 
