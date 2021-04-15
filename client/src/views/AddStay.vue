@@ -113,7 +113,6 @@ export default {
             axios.post("http://localhost:3000/api/stay/newStay/", stay)
             .then(() => {
                 this.$router.push('/stays')
-                console.log(this.stay)
             })
             .catch(err => console.log(err))
         }
