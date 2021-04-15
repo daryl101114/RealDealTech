@@ -59,7 +59,6 @@
                 </router-link>
             </div>
 
-
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
                 <!-- update dog -->
                 <div class="p-2 bd-highlight">

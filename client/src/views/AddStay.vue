@@ -9,7 +9,9 @@
                 <label class="text-light" for="exampleFormControlSelect1">Client</label>
                 <select required class="form-control" name="clientId" v-model="clientId">
                     <option selected disabled>Owner</option>
-                    <option v-for="client in clients" :key="client.id" :value="client.id">{{client.fname}} {{client.lname}}</option>
+                    <option v-for="client in filteredClients" :key="client.id" :value="client.id">
+                        {{client.fname}} {{client.lname}}
+                    </option>
                 </select>
             </div>
 
@@ -18,7 +20,7 @@
                 <label class="text-light" for="exampleFormControlSelect1">Dog</label>
                 <select required class="form-control" name="dogId" v-model="dogId">
                     <option selected disabled>Owner</option>
-                    <option v-for="dog in dogs" :key="dog.id" :value="dog.id">{{dog.dog_name}}</option>
+                    <option v-for="dog in filteredDogs" :key="dog.id" :value="dog.id">{{dog.dog_name}}</option>
                 </select>
             </div>
 
@@ -115,6 +117,18 @@ export default {
                 this.$router.push('/stays')
             })
             .catch(err => console.log(err))
+        }
+    },
+    computed: {
+        filteredClients() {
+            return this.clients.filter((client => {
+                return client.blacklistId == 3
+            }))
+        },
+        filteredDogs() {
+            return this.dogs.filter((dog) => {
+                return dog.blacklistId == 3
+            })
         }
     }
 }

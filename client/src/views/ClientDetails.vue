@@ -92,8 +92,7 @@
       // delete client
       deleteClient: function() {
         axios.delete("http://localhost:3000/api/clients/delete/" + this.id)
-        .then((res) => {
-          console.log(res)
+        .then(() => {
           this.$router.push('/clients')
          })
          .catch(err => console.log(err))
