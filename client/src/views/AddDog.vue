@@ -150,7 +150,7 @@ export default {
             axios.post("http://localhost:3000/api/dogs/add/", dog)
             .then(() => {
                 this.$router.push('/dogs')
-                })
+            })
             .catch(err => console.log(err, dog))
         }
     }

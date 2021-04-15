@@ -3,36 +3,47 @@
         <!-- heading label -->
         <h5 class="text-light">New Stay</h5>
         <!-- create client form -->
-        <form class="form d-flex flex-column">
-
-            <!-- client name -->
-            <div class="form-row">
-                <label for="clientName" class="text-light">Client Name</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Client name">
+        <form class="form d-flex flex-column" v-on:submit.prevent="newStay">
+            <!-- client -->
+            <div class="form-row" v-if="clients">
+                <label class="text-light" for="exampleFormControlSelect1">Client</label>
+                <select class="form-control" name="clientId" v-model="clientId">
+                    <option selected disabled>Owner</option>
+                    <option v-for="client in clients" :key="client.id" :value="client.id">{{client.fname}} {{client.lname}}</option>
+                </select>
             </div>
 
-            <!-- client email -->
-            <div class="form-row">
-                <label for="email" class="text-light">Client Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email">
+            <!-- dog -->
+            <div class="form-row" v-if="dogs">
+                <label class="text-light" for="exampleFormControlSelect1">Dog</label>
+                <select class="form-control" name="dogId" v-model="dogId">
+                    <option selected disabled>Owner</option>
+                    <option v-for="dog in dogs" :key="dog.id" :value="dog.id">{{dog.dog_name}}</option>
+                </select>
             </div>
 
-            <!-- dogs -->
+            <!-- start date -->
             <div class="form-row">
-                <label for="dogName" class="text-light">Dog Name</label>
-                <input type="text" class="form-control" id="dogName" placeholder="Dogs names">
+                <label for="datePick" class="text-light">Stay Start Date</label>
+                <input type="date" class="form-control" id="datePick" name="start_date" v-model="start_date">
             </div>
 
-            <!-- date -->
+            <!-- end date -->
             <div class="form-row">
-                <label for="datePick" class="text-light">Date of Stay</label>
-                <input type="date" class="form-control" id="datePick">
+                <label for="datePick" class="text-light">Stay End Date</label>
+                <input type="date" class="form-control" id="datePick" name="end_date" v-model="end_date">
+            </div>
+
+            <!-- notes about the stay -->
+            <div class="form-row">
+                <label for="note" class="text-light">Stay notes</label>
+                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..." name="note" v-model="note"></textarea>
             </div>
 
             <!-- notes about the client -->
             <div class="form-row">
-                <label for="stayNotes" class="text-light">Stay notes</label>
-                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..."></textarea>
+                <label for="instructions" class="text-light">Stay instructions</label>
+                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..." name="instructions" v-model="instructions"></textarea>
             </div>
 
             <!-- submit and cancel buttons -->
@@ -58,8 +69,53 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-    
+    data() {
+        return {
+            clients: [],
+            dogs: [],
+            start_date: '',
+            end_date: '',
+            note: '',
+            instructions: '',
+            clientId: '',
+            dogId: ''
+        }
+    },
+    created() {
+    //   call client list from API
+        axios.get("http://localhost:3000/api/clients")
+        .then(res => {
+            this.clients = res.data.data
+        })
+        .catch(err => console.log(err))
+
+        axios.get("http://localhost:3000/api/dogs")
+        .then(res => {
+            this.dogs = res.data.data
+        })
+        .catch(err => console.log(err))
+    },
+    methods: {
+        // create newStay model and pass it into API PUT request to create stay
+        newStay() {
+            let stay = {
+                start_date:  this.start_date,
+                end_date: this.end_date,
+                note: this.note,
+                instructions: this.instructions,
+                clientId: this.clientId,
+                dogId: this.dogId
+            }
+            axios.post("http://localhost:3000/api/stay/newStay/", stay)
+            .then(() => {
+                this.$router.push('/stays')
+            })
+            .catch(err => console.log(err))
+        }
+    }
 }
 </script>
 
