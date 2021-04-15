@@ -59,6 +59,19 @@
                 </router-link>
             </div>
 
+            <!-- dog vaccines -->
+             <div class="d-flex flex-column align-items-start dog-info" v-if="vaccines.length !== 0">
+                <p class="p-2 bd-highlight" id="field">Vaccinations: </p>
+                <!-- loop through vaccines for dog -->
+                <ul class="list-group list-group-horizontal" v-for="vaccine in vaccines" :key="vaccine.vaccine_recordID">
+                <li id="vacc-link">
+                    <a class="text-light" :href="'http://localhost:3000/' + vaccine.vaccine_file">
+                        <p id="vaccines">{{vaccine.vaccine_name}}</p>
+                    </a>
+                </li>
+                </ul>
+            </div>
+
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
                 <!-- update dog -->
                 <div class="p-2 bd-highlight">
@@ -81,17 +94,28 @@ export default{
     data() {
         return {
             id: this.$route.params.id,
-            dog: []
+            dog: [],
+            vaccines: []
         }
     },
     created() {
-      axios.get("http://localhost:3000/api/dogs/dog/" + this.id)
-      .then(res => {
-          this.dog = res.data.data
-      })
-      .catch(err => {
-          console.log(err)
-      })
+    // get dog info
+        axios.get("http://localhost:3000/api/dogs/dog/" + this.id)
+        .then(res => {
+            this.dog = res.data.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    //   get dog vaccines
+        axios.get("http://localhost:3000/api/vaccine/vaccinePerDog/" + this.id)
+        .then(res => {
+            this.vaccines = res.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
   },
   methods: {
     //   delete dog
@@ -127,5 +151,12 @@ export default{
 .border {
 background:#1d2e3d;
 color: aliceblue;
+}
+#vacc-link{
+  color: white;
+  text-decoration: underline;
+}
+#vaccines{
+    padding-left: .5rem;
 }
 </style>
