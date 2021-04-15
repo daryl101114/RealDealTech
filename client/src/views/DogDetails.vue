@@ -133,8 +133,8 @@ color: aliceblue;
 } */
 .border {
 /* background-color:cadetblue; */
-/* background:green; */
-background: radial-gradient(circle, #2c3e50 0%, #2c5b8a 98%);
+background:#2c3e50;
+/* background: radial-gradient(circle, #2c3e50 0%, #2c5b8a 98%); */
 color: aliceblue;
 }
 </style>
