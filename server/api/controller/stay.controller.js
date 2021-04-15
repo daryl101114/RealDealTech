@@ -60,15 +60,15 @@ exports.update = (req, res) => {
 
      const id = req.params.id 
 //find record in db
-    Stay.findOne({where: {id: {[Op.eq]: id }},})
+    Stay.findOne({where: {stayID: {[Op.eq]: id }},})
     .then(record => {
 
 //CHECKS IF THE RECORD EXISTS
-  if (!record) {
-    throw new Error('No record found')
-  }
+    if (!record) {
+      throw new Error('No record found')
+    }
 
-  console.log(`retrieved record ${JSON.stringify(record,null,2)}`) 
+    console.log(`retrieved record ${JSON.stringify(record,null,2)}`) 
 
 //update a record
     record.update(updateStay).then( updatedRecord => {

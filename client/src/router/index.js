@@ -12,6 +12,7 @@ import AddDog from '../views/AddDog.vue'
 import AddStay from '../views/AddStay.vue'
 import UpdateClient from '../views/UpdateClient.vue'
 import UpdateDog from '../views/UpdateDog.vue'
+import UpdateStay from '../views/UpdateStay.vue'
 import StayDetails from '../views/StayDetails.vue'
 import Login from '../views/Login.vue'
 
@@ -88,6 +89,11 @@ const routes = [
     path: '/updateDog/:id',
     name: 'UpdateDog',
     component: UpdateDog
+  },
+  {
+    path: '/updateStay/:id',
+    name: 'UpdateStay',
+    component: UpdateStay
   },
   {
     path: '/stayDetails/:id',

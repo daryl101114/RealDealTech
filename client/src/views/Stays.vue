@@ -72,7 +72,6 @@ export default {
                 return stay.Client_Information.fname.toLowerCase().match(this.search) 
                 || stay.Client_Information.lname.toLowerCase().match(this.search)
                 || stay.Dog_Information.dog_name.toLowerCase().match(this.search)
-                || stay.start_date.toLowerCase().match(this.search)
             })
         }
   }

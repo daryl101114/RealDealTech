@@ -8,14 +8,6 @@
             <p class="card-text" v-if="start_date">{{start_date | moment}} - {{end_date | moment}}</p>
             <p class="card-text">Client name: {{client_fname}} {{client_lname}}</p>
             <p class="card-text">Dog name: {{dog_name}}</p>
-
-            <!-- conditional rending to check if there is notes or not -->
-            <p class="card-text" v-if="note.length <= 1"></p>
-            <p class="card-text" v-if="note.length > 1">Notes: {{note}}</p>
-
-            <!-- conditionala rendering to check if there is instructions or not -->
-            <p class="card-text" v-if="instruction.length <= 1"></p>
-            <p class="card-text" v-if="instruction.length > 1">Instructions: {{instruction}}</p>
         </div>
         <!-- Routes card to stay details and passes id  -->
         <router-link v-bind:to="'/stayDetails/' + id" class="card-link stretched-link"/>
