@@ -29,10 +29,7 @@
 </template>
 
 <style>
-/* template {
-  background: rgb(115,106,110);
-  background: radial-gradient(circle, rgba(115,106,110,1) 0%, rgba(84,110,122,1) 98%);
-} */
+
 #clientLogo {
   max-width: 50px;
   max-height: 50px;
@@ -51,25 +48,14 @@
   padding: 30px;
   color: aliceblue;
   background:#2c3e50;
-  /* background: darkgreen; */
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
-
-/* .sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-.sticky + .content {
-  padding-top: 60px;
-} */
 
 #nav a {
   text-decoration: none;
   padding: 1rem;
   font-weight: bold;
-  /* background:#2b3850; */
   color: aliceblue;
   text-align: center;
 }
