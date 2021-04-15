@@ -11,7 +11,7 @@ module.exports = (sequelize, Sequelize) => {
             type: DataTypes.TEXT
         },
         vaccine_file: {
-            type: DataTypes.BLOB
+            type: DataTypes.STRING
         }
     });
   
