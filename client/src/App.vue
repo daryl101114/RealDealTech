@@ -1,15 +1,29 @@
 <template>
   <div id="app">
     
-    <div id="nav">
-      <router-link to="/clients">Clients</router-link> 
-      <router-link to="/dogs">Dogs</router-link> 
-      <router-link to="/stays">Stays</router-link> 
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Image Here</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <router-link class="nav-link text" to="/clients">Clients</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link text" to="/dogs">Dogs</router-link> 
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link text" to="/stays">Stays</router-link>
+            </li>
+          </ul>
+        </div>
+      </nav>
       
       <!-- <router-link to="/">Home</router-link> -->
       <!-- <router-link to="/dev">Test</router-link> -->
       <!-- <router-link to="/about">About</router-link> | -->
-    </div>
     <router-view/>
   </div>
 </template>
