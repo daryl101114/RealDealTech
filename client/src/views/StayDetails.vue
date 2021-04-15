@@ -111,12 +111,11 @@
 </script>
 
 <style>
-.border {
+/* .border {
 background: rgb(115,106,110);
 background: radial-gradient(circle, rgba(115,106,110,1) 0%, rgba(84,110,122,1) 98%);
 color: aliceblue;
-/* background-color: aliceblue; */
-}
+} */
 .stay-title{
   margin: auto;
   margin-top: 10px;

@@ -126,10 +126,15 @@ export default{
     margin-top: 10px;
     font: large;
 }
-.border {
-background: rgb(115,106,110);
-background: radial-gradient(circle, rgba(115,106,110,1) 0%, rgba(84,110,122,1) 98%);
+/* .border {
+background: rgb(89, 129, 94);
+background: radial-gradient(circle, rgb(74, 116, 79) 0%, rgba(84,110,122,1) 98%);
 color: aliceblue;
-/* background-color: aliceblue; */
+} */
+.border {
+/* background-color:cadetblue; */
+/* background:green; */
+background: radial-gradient(circle, #2c3e50 0%, #2c5b8a 98%);
+color: aliceblue;
 }
 </style>

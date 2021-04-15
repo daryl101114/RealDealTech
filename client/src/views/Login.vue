@@ -6,13 +6,15 @@
     <form v-on:submit="login">
       <!-- Username -->
       <div class="d-flex justify-content-center">
-          <input type="text" class="form-control input-field" id="search-bar" placeholder="Enter Username" v-model="username">
+          <input type="text" class="form-control input-field" id="user-name" placeholder="Enter Username" v-model="username">
       </div>
 
       <!-- Password -->
       <div class="d-flex justify-content-center">
-          <input type="password" class="form-control input-field" id="search-bar" placeholder="Enter Password" v-model="password">
+          <input type="password" class="form-control input-field" id="password" placeholder="Enter Password" v-model="password">
       </div>
+
+      <p id="err">{{error}}</p>
 
       <!-- Login Button -->
       <input type="submit" class="btn btn-success" value="Login">
@@ -21,8 +23,6 @@
  
 </template>
 
-  </div>
-</template>
 
 <script>
 import axios from 'axios'
@@ -33,6 +33,7 @@ export default {
     return {
       username: null,
       password: null,
+      error: ""
     }
   },
   methods: {
@@ -48,7 +49,7 @@ export default {
         console.log(res)
       })
       .catch(err => {
-        console.log(err)
+        this.error = "Incorrect Credentials"
       })
     }
   }
@@ -56,9 +57,15 @@ export default {
 </script>
 
 <style>
-#search-bar {
+.login {
+  padding-top: 5rem;
+}
+#user-name, #password {
     display: flex;
     width: 300px;
     margin-bottom: 20px
+}
+#err {
+  color: red;
 }
 </style>
