@@ -141,4 +141,8 @@ ul{
 #dog-link{
   padding-left: .5rem;
 }
+.border {
+background:#1d2e3d;
+color: aliceblue;
+}
 </style>

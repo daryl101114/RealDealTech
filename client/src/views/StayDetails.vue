@@ -124,4 +124,8 @@ color: aliceblue;
 #stay-section{
   margin: .5rem 1rem;
 }
+.border {
+background:#1d2e3d;
+color: aliceblue;
+}
 </style>
