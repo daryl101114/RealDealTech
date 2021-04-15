@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    
     <div id="nav">
       <router-link to="/clients">Clients</router-link> 
       <router-link to="/dogs">Dogs</router-link> 
@@ -18,7 +19,10 @@
   background: rgb(115,106,110);
   background: radial-gradient(circle, rgba(115,106,110,1) 0%, rgba(84,110,122,1) 98%);
 } */
-
+#clientLogo {
+  max-width: 50px;
+  max-height: 50px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
