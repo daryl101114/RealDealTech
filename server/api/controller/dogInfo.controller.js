@@ -66,7 +66,7 @@ exports.update = (req,res) => {
         breed: req.body.breed,
         notes: req.body.notes,
         instructions: req.body.instructions,
-        ratings: req.body.ratings
+        rating: req.body.rating
     }
     console.log(updateDog);
 //find record in db

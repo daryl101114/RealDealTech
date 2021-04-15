@@ -62,9 +62,6 @@
           <div class="p-2 bd-highlight">
             <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteStay">Delete</a>
           </div>
-          <div class="p-2 bd-highlight">
-            <router-link to="/stays" class="btn btn-primary">Cancel</router-link>
-          </div>
         </div>
 
       </div>

@@ -59,17 +59,17 @@
                 <label for="rating" class="text-light">Dog rating</label>
                 <select require class="form-control" name="rating" v-model="dog.rating">
                     <option selected disabled>Rating</option>
-                    <option value="1">1</option>
+                    <option value="1">1 (Worst)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="5">5 (Best)</option>
                 </select>
             </div>
 
             <!-- Blacklist dog -->
             <div class="form-row justify-content-start">
-                <label for="clientNotes" class="text-light">Blacklist dog:</label>
+                <label for="blacklistId" class="text-light">Blacklist dog:</label>
                 <div class="form-check">
                     <input class="form-check-input" required type="radio" name="blacklistId" v-model="dog.blacklistId" value="1" id="flexRadioDefault1">
                     <label class="form-check-label text-light" for="flexRadioDefault1">
@@ -151,7 +151,7 @@ export default {
             }
             axios.put("http://localhost:3000/api/dogs/dogUpdate/" + this.id, dog)
             .then(() => {
-                this.$router.push('/dogs')
+                this.$router.go(-1)
                 })
             .catch(err => console.log(err, dog))
         }

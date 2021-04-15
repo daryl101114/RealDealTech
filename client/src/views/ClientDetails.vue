@@ -56,9 +56,6 @@
           <div class="p-2 bd-highlight">
             <a class="btn btn-primary" href="#" role="button" v-on:click.prevent="deleteClient">Delete</a>
           </div>
-          <div class="p-2 bd-highlight">
-            <router-link to="/clients" class="btn btn-primary">Cancel</router-link>
-          </div>
         </div>
 
       </div>

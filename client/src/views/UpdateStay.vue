@@ -101,7 +101,7 @@ export default {
             }
             axios.put("http://localhost:3000/api/stay/updateStay/" + this.id, stay)
             .then(() => {
-                this.$router.push('/stays')
+                this.$router.go(-1)
                 })
             .catch(err => console.log(err, dog))
         }
