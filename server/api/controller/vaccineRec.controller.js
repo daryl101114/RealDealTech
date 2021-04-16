@@ -22,7 +22,7 @@ exports.create = (req, res) => {
     const vaccine = {
         vaccine_name: req.body.vaccine_name,
         DogInformationId: req.body.DogInformationId,
-        vaccine_file: req.file.path
+        vaccine_file: req.file.originalname
     }
     Vaccine.create(vaccine).then(data => {
          res.send(data);
