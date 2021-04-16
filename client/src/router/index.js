@@ -16,6 +16,7 @@ import UpdateStay from '../views/UpdateStay.vue'
 import StayDetails from '../views/StayDetails.vue'
 import Login from '../views/Login.vue'
 import ReportCard from '../views/ReportCard'
+import AddVaccine from '../views/AddVaccine'
 
 
 Vue.use(VueRouter)
@@ -79,6 +80,11 @@ const routes = [
     path: '/addStay',
     name: 'AddStay',
     component: AddStay
+  },
+  {
+    path: '/addVaccine',
+    name: 'AddVaccine',
+    component: AddVaccine
   },
   {
     path: '/updateClient/:id',
