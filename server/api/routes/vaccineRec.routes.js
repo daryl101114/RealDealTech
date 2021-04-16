@@ -8,8 +8,8 @@ module.exports = app => {
             cb( null, './uploads/')
         },
         filename: function(req, file, cb){
-            const ext = file.mimetype.split("/")[1];
-            cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
+            // const ext = file.mimetype.split("/")[1];
+            cb(null, file.originalname);
         }
     })
     const upload = multer({storage: storage})
