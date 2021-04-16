@@ -56,7 +56,7 @@
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
           <!-- Link to Report Card -->
           <div class="p-2 bd-highlight">
-            <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/reportCardPage/' + id">Report Card</router-link>
+           <router-link class="btn btn-success" role="button" :to="'/reportCardPage/' + id" target="_blank">Report Card</router-link>
           </div>
           <!-- update stay -->
           <div class="p-2 bd-highlight">

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav" v-if="isLogin" >
+    <div id="nav" v-if="isLogin&&isReportCardPage" >
       <NavBar/>
     </div>
     <router-view/>
@@ -16,6 +16,10 @@ export default {
   computed: {
     isLogin() {
       return this.$route.name != 'Login'
+      
+    },
+    isReportCardPage() {
+      return this.$route.name != 'ReportCardPage'
     }
   }
 }
