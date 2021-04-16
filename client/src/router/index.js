@@ -16,10 +16,7 @@ import UpdateStay from '../views/UpdateStay.vue'
 import StayDetails from '../views/StayDetails.vue'
 import Login from '../views/Login.vue'
 import ReportCard from '../views/ReportCard'
-<<<<<<< HEAD
 import ReportCardPage from '../views/ReportCardPage.vue'
-=======
->>>>>>> b4447cc6bd14d42b74df960e4333f4f55ace778f
 
 
 Vue.use(VueRouter)
