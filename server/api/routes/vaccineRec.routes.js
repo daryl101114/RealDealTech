@@ -2,6 +2,7 @@ module.exports = app => {
     var router = require('express').Router()
     const vaccRec = require("../controller/vaccineRec.controller")
     const multer = require('multer')
+    
     //STORAGE STRATEGY
     const storage = multer.diskStorage({
         destination: function(req, file, cb) {
@@ -17,7 +18,8 @@ module.exports = app => {
 
     router.get('/record/:id', vaccRec.getOne);//Get One Vaccination Record Based on ID
     router.post('/post', upload.single('vaccine_file') ,vaccRec.create);//Stores Vaccination File in DB
-    router.get('/vaccinePerDog/:id',vaccRec.getAllVaccinePerDog)
+    router.get('/vaccinePerDog/:id',vaccRec.getAllVaccinePerDog)//GET ALL VACCINE PER DEOG
+    router.delete('/delete/:id', vaccRec.delete)//DELETE A RECORD
 
     app.use("/api/vaccine", router)
 }

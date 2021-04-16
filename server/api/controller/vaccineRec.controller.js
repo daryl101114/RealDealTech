@@ -45,3 +45,14 @@ exports.getAllVaccinePerDog = (req, res) => {
      res.status(500).send({message: err.message});
   })
 }
+
+//DELETE DOG
+exports.delete = (req,res) => {
+  const vaccine_recordID = req.params.id
+  console.log(vaccine_recordID)
+  Vaccine.destroy({where: {vaccine_recordID: {[Op.eq]: vaccine_recordID }}})
+  .then(res.status(200).send({message: "RECORD DELETED"}))
+  .catch(err =>{
+    res.status(500).send(err)
+  })
+}
