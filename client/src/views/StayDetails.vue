@@ -54,11 +54,15 @@
         </div>
 
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-          <!-- update client -->
+          <!-- Link to Report Card -->
+          <div class="p-2 bd-highlight">
+            <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/reportCardPage/' + id">Report Card</router-link>
+          </div>
+          <!-- update stay -->
           <div class="p-2 bd-highlight">
             <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/updateStay/' + id">Update</router-link>
           </div>
-          <!-- delete client -->
+          <!-- delete stay -->
           <div class="p-2 bd-highlight">
             <a class="btn btn-success" href="#" role="button" v-on:click.prevent="deleteStay">Delete</a>
           </div>

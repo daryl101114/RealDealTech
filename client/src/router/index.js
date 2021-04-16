@@ -17,6 +17,7 @@ import StayDetails from '../views/StayDetails.vue'
 import Login from '../views/Login.vue'
 import ReportCard from '../views/ReportCard'
 import AddVaccine from '../views/AddVaccine'
+import ReportCardPage from '../views/ReportCardPage.vue'
 
 
 Vue.use(VueRouter)
@@ -115,6 +116,11 @@ const routes = [
     path: '/reportCard',
     name: 'ReportCard',
     component: ReportCard
+  },
+  {
+    path: '/reportCardPage/:id',
+    name: 'ReportCardPage',
+    component: ReportCardPage
   }
 ]
 
