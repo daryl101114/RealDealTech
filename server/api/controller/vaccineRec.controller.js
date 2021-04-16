@@ -20,8 +20,8 @@ exports.getOne = (req, res) => {
 exports.create = (req, res) => {
     console.log(req.file)
     const vaccine = {
-        vaccine_name: req.body.name,
-        DogInformationId: req.body.dogID,
+        vaccine_name: req.body.vaccine_name,
+        DogInformationId: req.body.DogInformationId,
         vaccine_file: req.file.path
     }
     Vaccine.create(vaccine).then(data => {

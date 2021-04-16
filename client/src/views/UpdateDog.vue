@@ -67,6 +67,35 @@
                 </select>
             </div>
 
+            <br>
+            <!-- add dog section -->
+            <div class="form-column justify-content-start text-light">
+                <!-- section heading -->
+                <div class="form-row d-flex">
+                    <h6>Add dog</h6>
+                    <svg xmlns="http://www.w3.org/2000/svg" v-on:click="showVaccine = !showVaccine" width="20" height="20" fill="#28a745" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </div>
+
+                <!-- form section -->
+                <div class="form-column d-flex" v-if="showVaccine">
+                    <!-- vaccine name -->
+                    <div class="d-flex form-row">         
+                        <label for="vaccine_name">Vaccine Name</label>
+                        <input require type="text" class="form-control" name="vaccine_name" v-model="vaccine_name" placeholder="Vaccine name">
+                    </div>
+                    <!-- vaccine file -->
+                    <div class="d-flex form-row">         
+                        <label for="vaccine_file">Vaccine File</label>
+                        <input type="file" id="file" ref="file" class="form-control-file" @change="onFileSelected" multiple>
+                    </div>
+                </div>
+               
+            </div>
+
+            <br>
             <!-- Blacklist dog -->
             <div class="d-flex flex-column justify-content-start">
                 <label for="blacklistId" class="d-flex text-light">Blacklist dog:</label>
@@ -113,7 +142,12 @@ export default {
         return {
             id: this.$route.params.id,
             dog: [],
-            clients: []
+            clients: [],
+            showVaccine: false,
+            file: '',
+            vaccine_name: '',
+            vaccine_file: '',
+            DogInformationId: ''
         }
     },
     created() {
@@ -136,6 +170,7 @@ export default {
     methods: {
         // create newClient model and pass it into API PUT request to create client
         updateDog() {
+            // dog model
             let dog = {
                 dog_name: this.dog.dog_name,
                 age: this.dog.age,
@@ -147,11 +182,41 @@ export default {
                 blacklistID: this.dog.blacklistId,
                 ClientInformationId: this.dog.ClientInformationId
             }
+            
+            // vaccine model
+            let vaccine = {
+                vaccine_name: this.vaccine_name,
+                vaccine_file: this.file,
+                DogInformationId: this.id
+            }
+            // update dog
             axios.put("http://localhost:3000/api/dogs/dogUpdate/" + this.id, dog)
             .then(() => {
+                // if add vaccine is open
+                if(this.showVaccine){
+                    // add vaccine
+                    axios.post("http://localhost:3000/api/vaccine/post", vaccine,{
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then((res) => 
+                        console.log(res)
+                    )
+                    .catch(err => console.log(vaccine))
+                }
                 this.$router.go(-1)
-                })
+            })
             .catch(err => console.log(err, dog))
+        },
+        onFileSelected() {
+            this.file = this.$refs.file.files[0]
+        }
+    },
+    computed: {
+        // show or hide add vaccine fields
+        addVaccine: function() {
+            return this.showVaccine
         }
     }
     

@@ -112,6 +112,7 @@ export default{
         axios.get("http://localhost:3000/api/vaccine/vaccinePerDog/" + this.id)
         .then(res => {
             this.vaccines = res.data
+            console.log(this.vaccines)
         })
         .catch(err => {
             console.log(err)

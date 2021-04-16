@@ -67,6 +67,7 @@
                 </select>
             </div>
 
+            <br>
             <!-- Blacklist dog -->
             <div class="d-flex flex-column justify-content-start">
                 <label for="clientNotes" class="d-flex text-light">Blacklist dog:</label>
