@@ -36,15 +36,15 @@
             </div>
 
             <!-- blacklist the client -->
-            <div class="form-row justify-content-start">
-                <label for="clientNotes" class="text-light">Blacklist client:</label>
-                <div class="form-check">
+            <div class="d-flex flex-column justify-content-start">
+                <label for="clientNotes" class="d-flex text-light">Blacklist client:</label>
+                <div class="d-flex form-check">
                     <input class="form-check-input" required type="radio" name="blacklistId" v-model="blacklistId" value="1" id="flexRadioDefault1">
                     <label class="form-check-label text-light" for="flexRadioDefault1">
                         Yes (Blacklist Client)
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="d-flex form-check">
                     <input class="form-check-input" type="radio" name="blacklistId" v-model="blacklistId" value="3" id="flexRadioDefault2" checked>
                     <label class="form-check-label text-light" for="flexRadioDefault2">
                         No
@@ -57,7 +57,6 @@
                 <!-- May need input type="submit" instead? -->
                 <button type="submit" class="btn btn-success form-button p-2">Submit</button>
                 <input type="reset" value="Clear" class="btn btn-success form-button p-2">                
-                <!-- <router-link to="/clients" class="btn btn-success form-button p-2">Cancel</router-link> -->
             </div>
         </form>
 

@@ -68,15 +68,15 @@
             </div>
 
             <!-- Blacklist dog -->
-            <div class="form-row justify-content-start">
-                <label for="blacklistId" class="text-light">Blacklist dog:</label>
-                <div class="form-check">
+            <div class="d-flex flex-column justify-content-start">
+                <label for="blacklistId" class="d-flex text-light">Blacklist dog:</label>
+                <div class="d-flex form-check">
                     <input class="form-check-input" required type="radio" name="blacklistId" v-model="dog.blacklistId" value="1" id="flexRadioDefault1">
                     <label class="form-check-label text-light" for="flexRadioDefault1">
                         Yes (Blacklist Client)
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="d-flex form-check">
                     <input class="form-check-input" type="radio" name="blacklistId" v-model="dog.blacklistId" value="3" id="flexRadioDefault2" checked>
                     <label class="form-check-label text-light" for="flexRadioDefault2">
                         No
