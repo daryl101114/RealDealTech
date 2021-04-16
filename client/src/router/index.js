@@ -15,7 +15,7 @@ import UpdateDog from '../views/UpdateDog.vue'
 import UpdateStay from '../views/UpdateStay.vue'
 import StayDetails from '../views/StayDetails.vue'
 import Login from '../views/Login.vue'
-
+import ReportCard from '../views/ReportCard'
 
 
 Vue.use(VueRouter)
@@ -104,6 +104,11 @@ const routes = [
     path: '/',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/reportCard',
+    name: 'ReportCard',
+    component: ReportCard
   }
 ]
 
