@@ -14,7 +14,7 @@
             <!-- dog age -->
             <div class="form-row">
                 <label for="age" class="text-light">Age</label>
-                <input require type="number" min="0" max="20" class="form-control" name="age" v-model="age" placeholder="Age">
+                <input require type="number" min="0" max="30" class="form-control" name="age" v-model="age" placeholder="Age">
             </div>
 
             <!-- dog breed -->

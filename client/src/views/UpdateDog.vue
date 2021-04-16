@@ -68,34 +68,6 @@
             </div>
 
             <br>
-            <!-- add dog section -->
-            <div class="form-column justify-content-start text-light">
-                <!-- section heading -->
-                <div class="form-row d-flex">
-                    <h6>Add dog</h6>
-                    <svg xmlns="http://www.w3.org/2000/svg" v-on:click="showVaccine = !showVaccine" width="20" height="20" fill="#28a745" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-
-                <!-- form section -->
-                <div class="form-column d-flex" v-if="showVaccine">
-                    <!-- vaccine name -->
-                    <div class="d-flex form-row">         
-                        <label for="vaccine_name">Vaccine Name</label>
-                        <input require type="text" class="form-control" name="vaccine_name" v-model="vaccine_name" placeholder="Vaccine name">
-                    </div>
-                    <!-- vaccine file -->
-                    <div class="d-flex form-row">         
-                        <label for="vaccine_file">Vaccine File</label>
-                        <input type="file" id="file" ref="file" class="form-control-file" @change="onFileSelected" multiple>
-                    </div>
-                </div>
-               
-            </div>
-
-            <br>
             <!-- Blacklist dog -->
             <div class="d-flex flex-column justify-content-start">
                 <label for="blacklistId" class="d-flex text-light">Blacklist dog:</label>
@@ -111,6 +83,65 @@
                         No
                     </label>
                 </div>
+            </div>
+
+            <br>
+            <!-- add dog section -->
+            <div class="form-column justify-content-start text-light">
+                <!-- section heading -->
+                <div class="form-row d-flex">
+                    <h6 id="add-vaccine">Add Vaccine</h6>
+                    <!-- add vaccine PLUS button-->
+                    <svg xmlns="http://www.w3.org/2000/svg" v-if="!showVaccine" v-on:click="showVaccine = !showVaccine" width="20" height="20" fill="#28a745" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    <!-- add vaccine MINUS button  -->
+                    <svg xmlns="http://www.w3.org/2000/svg" v-if="showVaccine" v-on:click="showVaccine = !showVaccine" width="16" height="16" fill="#28a745" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                    </svg>
+                </div>
+
+                <!-- add vaccines -->
+                <div class="form-row d-flex flex-column" v-if="showVaccine">
+                    <!-- vaccine name -->
+                    <div class="d-flex flex-column" id="add-vaccine-field">
+                        <label for="vaccine_name" class="d-flex text-light">Vaccine Name</label>
+                        <input type="text" name="vaccine_name" id="vaccine_name" v-model="vaccine_name">
+                    </div>
+
+                    <!-- input file -->
+                    <div class="d-flex field" id="add-vaccine-field">
+                        <label for="file" class="text-light">
+                        <input type="file" ref="file" @change="handleFileUpload">
+                        </label>
+                    </div>
+               </div>
+            </div>
+
+            <!-- show vaccines -->
+            <div class="form-row d-flex flex-column align-items-start" v-if="vaccines.length !== 0">
+                <h6 class="d-flex text-light font-weight-light" id="field">Vaccinations: </h6>
+                <!-- loop through vaccines for dog -->
+                <ul class="form-row list-group" id="list-spacing" v-for="(vaccine, i) in vaccines" :key="i">
+                    <!-- list item for one vaccine -->
+                    <li class="form-row d-flex flex-row">
+                        <!-- div for delete button -->
+                        <div class="d-flex" id="vaccine-list-item">
+                            <svg xmlns="http://www.w3.org/2000/svg"  v-on:click.prevent="deleteVaccine(vaccine.vaccine_recordID, i)" width="16" height="16" fill="#28a745" class="d-flex bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </div>
+                        <!-- div for vaccine name -->
+                        <div class="d-flex" id="vaccine-list-item">
+                            <a class="d-flex text-light" :href="'http://localhost:3000/' + vaccine.vaccine_file">
+                                <p id="vaccines">{{vaccine.vaccine_name}}</p>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
             <!-- submit and cancel buttons -->
@@ -143,11 +174,10 @@ export default {
             id: this.$route.params.id,
             dog: [],
             clients: [],
+            vaccines: [],
             showVaccine: false,
             file: '',
-            vaccine_name: '',
-            vaccine_file: '',
-            DogInformationId: ''
+            vaccine_name: ''
         }
     },
     created() {
@@ -155,6 +185,15 @@ export default {
         axios.get("http://localhost:3000/api/dogs/dog/" + this.id)
         .then(res => {
             this.dog = res.data.data
+
+            // get dog vaccines
+            axios.get("http://localhost:3000/api/vaccine/vaccinePerDog/" + this.id)
+            .then(res => {
+                this.vaccines = res.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
         })
         .catch(err => {
             console.log(err)
@@ -170,6 +209,7 @@ export default {
     methods: {
         // create newClient model and pass it into API PUT request to create client
         updateDog() {
+
             // dog model
             let dog = {
                 dog_name: this.dog.dog_name,
@@ -183,34 +223,50 @@ export default {
                 ClientInformationId: this.dog.ClientInformationId
             }
             
-            // vaccine model
-            let vaccine = {
-                vaccine_name: this.vaccine_name,
-                vaccine_file: this.file,
-                DogInformationId: this.id
-            }
+            // set formData variable
+            let formData = new FormData()
+
+            // add required fields for vaccine into Formdata
+            formData.append('DogInformationId',  this.id)
+            formData.append('vaccine_name', this.vaccine_name)
+            formData.append('vaccine_file', this.file);
+
             // update dog
             axios.put("http://localhost:3000/api/dogs/dogUpdate/" + this.id, dog)
             .then(() => {
+
                 // if add vaccine is open
                 if(this.showVaccine){
                     // add vaccine
-                    axios.post("http://localhost:3000/api/vaccine/post", vaccine,{
+                   axios.post( "http://localhost:3000/api/vaccine/post", formData,
+                        {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
+                        }
+                    ).then(function(){
+                        console.log(formData);
                     })
-                    .then((res) => 
-                        console.log(res)
-                    )
-                    .catch(err => console.log(vaccine))
+                    .catch(function(){
+                        console.log(formData);
+                    });
                 }
-                this.$router.go(-1)
+                // take you back one page
+                this.$router.push('/dogs')
             })
             .catch(err => console.log(err, dog))
         },
-        onFileSelected() {
+        // handle upload to file input
+        handleFileUpload() {
             this.file = this.$refs.file.files[0]
+        },
+        // delete a vaccine
+        deleteVaccine(id, i) {
+            axios.delete("http://localhost:3000/api/vaccine/delete/" + id)
+            .then(() => {
+                this.vaccines.splice(i, 1)
+            })
+            .catch(err => console.log(err))
         }
     },
     computed: {
@@ -230,6 +286,7 @@ export default {
 .form-row{
     padding-top: .5rem;
     padding-bottom: .5rem;
+    margin-left: 0;
 }
 .form-button{
     padding-top: .5rem;
@@ -242,6 +299,19 @@ export default {
     margin-left: auto;
     margin-right: 3.5rem;
     margin-bottom: 1rem;
+}
+#add-vaccine{
+    padding-right: 1rem;
+}
+#add-vaccine-field{
+    padding-bottom: 1rem;
+}
+#vaccine-list-item{
+    padding-right: .5rem;
+}
+#list-spacing{
+    padding-left: .5rem;
+    height: 5vh;
 }
 .foot{
     position: fixed; 

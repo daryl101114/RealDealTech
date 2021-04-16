@@ -127,7 +127,7 @@ export default {
         },
         filteredDogs() {
             return this.dogs.filter((dog) => {
-                return dog.blacklistId == 3
+                return dog.blacklistId == 3 && dog.ClientInformationId == this.clientId
             })
         }
     }
