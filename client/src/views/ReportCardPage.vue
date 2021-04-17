@@ -12,7 +12,13 @@
           <h6 class="font-weight-bold" id="heading">Stay Date</h6>
           <p>{{stay.start_date | moment}} - {{stay.end_date | moment}}</p>
         </div>
-
+        <div>
+          <h3>Thank you for choosing Nikki's Kennels!</h3>
+          <br>
+          <h1>{{stay.Dog_Information.dog_name}}</h1>
+          <h1 id="stars">☆ ☆ ☆ ☆ ☆</h1>
+    
+          </div>
         <!-- client information -->
         <!-- <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.Client_Information">
           <h6 class="font-weight-bold" id="heading">Client information</h6>
@@ -92,6 +98,14 @@ background:#1d2e3d;
 color: aliceblue;
 }
 
+#stars{
+  color: yellow;
+  font-size: 60px;
+}
+
+.h3{
+  
+}
 /* #field{
     font-weight: bold;
 }
