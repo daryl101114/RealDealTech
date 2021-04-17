@@ -103,9 +103,6 @@ color: aliceblue;
   font-size: 60px;
 }
 
-.h3{
-  
-}
 /* #field{
     font-weight: bold;
 }
