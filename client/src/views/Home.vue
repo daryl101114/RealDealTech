@@ -31,7 +31,7 @@ export default {
 }
 
 </script>
-<style>
+<style scoped>
 #logo {
   max-width: 125px;
   max-height: 125px;

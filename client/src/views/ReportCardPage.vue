@@ -78,7 +78,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 .stay-title{
   margin: auto;
   margin-top: 10px;

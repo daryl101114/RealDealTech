@@ -1,7 +1,8 @@
 <template>
     <div class="border">
+      <!-- Displays first, disappears if deleting -->
       <!-- make page column format -->
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column" v-if="!showComponent">
         <!-- header section -->
         <div class="d-flex stay-title">
             <!-- Back button -->
@@ -14,7 +15,6 @@
             <!-- Page heading -->
             <h4>Stay Details</h4>
         </div>
-
 
         <!-- Date information -->
         <div class="d-flex flex-column align-items-start" id="stay-section">
@@ -63,11 +63,21 @@
             <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/updateStay/' + id">Update</router-link>
           </div>
           <!-- delete stay -->
-          <div class="p-2 bd-highlight">
-            <a class="btn btn-success" href="#" role="button" v-on:click.prevent="deleteStay">Delete</a>
-          </div>
+          <!-- delete (will show the DeleteVerification component) -->
+            <div class="p-2 bd-highlight">
+                  <button class="btn btn-danger" role="button" style="vertical-align:middle" @click="toggleComponent">Delete</button>
+            </div>
         </div>
-
+      </div>
+      <!-- shows if tries to delete -->
+      <div v-if="showComponent">
+          <DeleteVerification/>
+          <div class="p-2 bd-highlight">
+              <a class="btn btn-danger" href="#" role="button" v-on:click.prevent="deleteStay">Confirm Delete</a>
+          </div>
+          <div class="p-2 bd-highlight">
+              <button class="btn btn-success" role="button" style="vertical-align:middle" @click="toggleComponent">Cancel</button>
+          </div>
       </div>
     </div>
 </template>
@@ -75,12 +85,18 @@
 <script>
   import moment from 'moment'
   import axios from 'axios'
+  import DeleteVerification from '@/components/DeleteVerification.vue'
+
 
   export default{
+    components: {
+        DeleteVerification
+    },
     data() {
         return {
             id: this.$route.params.id,
-            stay: []
+            stay: [],
+            showComponent: false 
         }
     },
     created() {
@@ -101,6 +117,9 @@
             this.$router.push('/stays')
           })
           .catch(err => console.log(err))
+      },
+      toggleComponent () {
+        this.showComponent = !this.showComponent;
       }
     },
     filters: {

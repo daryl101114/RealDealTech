@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .form{
     margin: 0 1.5rem 2rem;
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="border">
-        <div class="text-light d-flex flex-column">
+        <div class="text-light d-flex flex-column" v-if="!showComponent">
             <!-- dog name as heading -->
             <div class="d-flex dog-title">
                 <!-- Back button -->
@@ -77,25 +77,41 @@
                 <div class="p-2 bd-highlight">
                     <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/updateDog/' + id">Update</router-link>
                 </div>
-                <!-- delete client -->
+                <!-- delete (will show the DeleteVerification component) -->
                 <div class="p-2 bd-highlight">
-                    <a class="btn btn-success" href="#" role="button" v-on:click.prevent="deleteDog">Delete</a>
+                     <button class="btn btn-danger" role="button" style="vertical-align:middle" @click="toggleComponent">Delete</button>
                 </div>
             </div>
 
         </div>
+        <!-- shows if tries to delete -->
+        <div v-if="showComponent">
+            <DeleteVerification/>
+            <div class="p-2 bd-highlight">
+                <a class="btn btn-danger" href="#" role="button" v-on:click.prevent="deleteDog">Confirm Delete</a>
+            </div>
+            <div class="p-2 bd-highlight">
+                <button class="btn btn-success" role="button" style="vertical-align:middle" @click="toggleComponent">Cancel</button>
+            </div>
+        </div>
     </div>
+    
 </template>
 
 <script>
 import axios from 'axios'
+import DeleteVerification from '@/components/DeleteVerification.vue'
 
 export default{
+    components: {
+        DeleteVerification
+    },
     data() {
         return {
             id: this.$route.params.id,
             dog: [],
-            vaccines: []
+            vaccines: [],
+            showComponent: false 
         }
     },
     created() {
@@ -126,14 +142,16 @@ export default{
           this.$router.push('/dogs')
          })
          .catch(err => console.log(err))
+    },
+    toggleComponent () {
+        this.showComponent = !this.showComponent;
     }
-
   }
 
 }
 </script>
 
-<style>
+<style scoped>
 #field{
     font-weight: bold;
 }

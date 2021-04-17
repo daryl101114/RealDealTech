@@ -76,12 +76,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .foot{
+    padding-bottom: 3rem;
+    padding-right: 2rem;
     position: fixed; 
     bottom: 0; 
     right: 0;
-
 }
 #search-bar{
     width: 90%;

@@ -74,7 +74,7 @@
                 <div class="d-flex form-check">
                     <input class="form-check-input" required type="radio" name="blacklistId" v-model="blacklistId" value="1" id="flexRadioDefault1">
                     <label class="form-check-label text-light" for="flexRadioDefault1">
-                        Yes (Blacklist Client)
+                        Yes (Blacklist Dog)
                     </label>
                 </div>
                 <div class="d-flex form-check">
@@ -158,7 +158,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .form{
     margin: 0 1.5rem 2rem;
 }
@@ -179,9 +179,10 @@ export default {
     margin-bottom: 1rem;
 }
 .foot{
+    padding-bottom: 3rem;
+    padding-right: 2rem;
     position: fixed; 
     bottom: 0; 
     right: 0;
-
 }
 </style>

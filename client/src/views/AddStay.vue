@@ -134,7 +134,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .form{
     margin: 0 1.5rem 2rem;
 }
@@ -154,5 +154,11 @@ export default {
     margin-right: 3.5rem;
     margin-bottom: 1rem;
 }
-
+.foot{
+    padding-bottom: 3rem;
+    padding-right: 2rem;
+    position: fixed; 
+    bottom: 0; 
+    right: 0;
+}
 </style>

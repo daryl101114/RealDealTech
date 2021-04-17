@@ -1,7 +1,8 @@
 <template>
     <div class="border">
+      <!-- Displays first, disappears if deleting -->
       <!-- make page column -->
-      <div class="d-flex flex-column" id="details-section">
+      <div class="d-flex flex-column" id="details-section" v-if="!showComponent">
         
         <!-- header section -->
         <div class="d-flex client-title">
@@ -52,25 +53,41 @@
           <div class="p-2 bd-highlight">
             <router-link class="btn btn-success" href="#" role="button" v-bind:to="'/updateClient/' + id">Update</router-link>
           </div>
-          <!-- delete client -->
-          <div class="p-2 bd-highlight">
-            <a class="btn btn-success" href="#" role="button" v-on:click.prevent="deleteClient">Delete</a>
-          </div>
+          <!-- delete (will show the DeleteVerification component) -->
+            <div class="p-2 bd-highlight">
+              <button class="btn btn-danger" role="button" style="vertical-align:middle" @click="toggleComponent">Delete</button>
+            </div>
         </div>
 
       </div>
+      <!-- shows if tries to delete -->
+        <div v-if="showComponent">
+            <DeleteVerification/>
+            <div class="p-2 bd-highlight">
+                <a class="btn btn-danger" href="#" role="button" v-on:click.prevent="deleteClient">Confirm Delete</a>
+            </div>
+            <div class="p-2 bd-highlight">
+                <button class="btn btn-success" role="button" style="vertical-align:middle" @click="toggleComponent">Cancel</button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
   import axios from 'axios'
+  import DeleteVerification from '@/components/DeleteVerification.vue'
+
 
   export default{
+    components: {
+        DeleteVerification
+    },
     data() {
       return {
         client: [],
         dogs: [],
-        id: this.$route.params.id
+        id: this.$route.params.id,
+        showComponent: false 
       }
     },
     created() {
@@ -96,13 +113,16 @@
           this.$router.push('/clients')
          })
          .catch(err => console.log(err))
+      },
+      toggleComponent () {
+        this.showComponent = !this.showComponent;
       }
     }
     
   }
 </script>
 
-<style>
+<style scoped>
 /* .border {
 background: rgb(115,106,110);
 background: radial-gradient(circle, rgba(115,106,110,1) 0%, rgba(84,110,122,1) 98%);
