@@ -45,7 +45,7 @@
             <!-- notes about the client -->
             <div class="form-row">
                 <label for="instructions" class="text-light">Stay instructions</label>
-                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay notes..." name="instructions" v-model="instructions"></textarea>
+                <textarea class="form-control" id="stayNotes" rows="3" placeholder="Stay instructions..." name="instructions" v-model="instructions"></textarea>
             </div>
 
             <!-- submit and cancel buttons -->
