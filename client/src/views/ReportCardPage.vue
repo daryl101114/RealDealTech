@@ -13,34 +13,20 @@
           <p>{{stay.start_date | moment}} - {{stay.end_date | moment}}</p>
         </div>
         <div>
-          <h3>Thank you for choosing Nikki's Kennels!</h3>
           <br>
-          <h1>{{stay.Dog_Information.dog_name}}</h1>
-          <h1 id="stars">☆ ☆ ☆ ☆ ☆</h1>
-    
-          </div>
-        <!-- client information -->
-        <!-- <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.Client_Information">
-          <h6 class="font-weight-bold" id="heading">Client information</h6>
-            <p>Name: {{stay.Client_Information.fname}} {{stay.Client_Information.lname}}</p>
-          <p>Phone: {{stay.Client_Information.phone}}</p>
-          <p>Email: {{stay.Client_Information.email}}</p>
-        </div> -->
-
-        <!-- dog information -->
-        <!-- <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.Dog_Information">
-          <h6 class="font-weight-bold" id="heading">Dog information</h6>
-            <p>Name: {{stay.Dog_Information.dog_name}}</p>            
-            <p>Breed: {{stay.Dog_Information.breed}}</p>
-        </div> -->
-
-        <!-- notes and instructions -->
-        <!-- <div class="d-flex flex-column align-items-start" id="stay-section" v-if="stay.note || stay.instructions">
-          <h5 class="font-weight-bold" id="heading">Stay information</h5>
-          <p>Notes: {{stay.note}}</p>
-          <p>Instructions: {{stay.instructions}}</p>
-        </div> -->
-
+          <h2>Thank you for choosing Nikki's Kennels!</h2>
+          <br>
+          <a href="/#/"><img src="../assets/clientLogo.png" id="logo"/></a>
+          <br><br>
+          <h1>{{stay.Dog_Information.dog_name}} got:</h1>
+          <h1 id="stars">{{stay.Dog_Information.rating}}/5 ⭐</h1>
+        </div>
+      
+        <br><br>
+        <h3>Hope to see you again soon!
+          <br>
+          -Nikki ♥
+        </h3>
       </div>
     </div>
 </template>
@@ -53,7 +39,7 @@
     data() {
         return {
             id: this.$route.params.id,
-            stay: []
+            stay: [],
         }
     },
     created() {
@@ -66,16 +52,6 @@
           console.log(err)
       })
     },
-    methods: {
-      //   delete stay
-      deleteStay: function() {
-          axios.delete("http://localhost:3000/api/stay/delete/" + this.id)
-          .then((res) => {
-            this.$router.push('/stays')
-          })
-          .catch(err => console.log(err))
-      }
-    },
     filters: {
         moment: function (date) {
             return moment(date).format("MMM Do, YYYY");
@@ -85,48 +61,39 @@
 </script>
 
 <style scoped>
+
+div{
+  color:black;
+}
+.border{
+  min-height: 750px;
+  max-height: 750px;
+  min-width: 550px;
+  max-width: 550px;
+  background:#1d2e3d;
+  color: aliceblue;
+}
 .stay-title{
   margin: auto;
   margin-top: 10px;
   font: large;
 }
+h2{
+  font-size: 25px;
+}
 #stay-section{
   margin: .5rem 1rem;
 }
-.border {
-background:#1d2e3d;
-color: aliceblue;
+#printbtn{
+  display: none;
+  text-align: right;
+  margin: 5px;
 }
-
 #stars{
-  color: yellow;
   font-size: 60px;
 }
+#logo {
+  max-height: 200px;
+}
 
-/* #field{
-    font-weight: bold;
-}
-.back-button{
-    color: white;
-    margin: auto;
-}
-.dog-info{
-    margin-left: 1rem;
-}
-.dog-title{
-    margin: auto;
-    margin-top: 10px;
-    font: large;
-}
-.border {
-background:#1d2e3d;
-color: aliceblue;
-}
-#vacc-link{
-  color: white;
-  text-decoration: underline;
-}
-#vaccines{
-    padding-left: .5rem;
-} */
 </style>
