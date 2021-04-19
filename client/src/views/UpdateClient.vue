@@ -118,5 +118,29 @@ export default {
 </script>
 
 <style scoped>
-
+.form{
+    margin: 0 1.5rem 2rem;
+}
+.form-row{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-left: 0;
+}
+.form-button{
+    padding-top: .5rem;
+}
+.p-2{
+    margin: .5rem 1rem 0 0;
+}
+/* To right-justify button content on the page */
+.flex-row{
+    margin-left: auto;
+    margin-right: 3.5rem;
+    margin-bottom: 1rem;
+}
+.foot{
+    position: fixed; 
+    bottom: 0; 
+    right: 0;
+}
 </style>
