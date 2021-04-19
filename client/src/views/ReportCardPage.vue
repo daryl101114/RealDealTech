@@ -61,7 +61,10 @@
 </script>
 
 <style scoped>
-
+#app {
+    max-width: 600px;
+    max-height: 800px;
+}
 div{
   color:black;
 }
@@ -70,7 +73,8 @@ div{
   max-height: 750px;
   min-width: 550px;
   max-width: 550px;
-  background:#1d2e3d;
+  /* background:#1d2e3d;   */
+  background:#5594ca;
   color: aliceblue;
 }
 .stay-title{
